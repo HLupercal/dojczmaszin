@@ -1,4 +1,4 @@
-package thirdparty.raw;
+package com.dojczmaszin.thirdparty.raw;
 
 public class Gearbox {
 

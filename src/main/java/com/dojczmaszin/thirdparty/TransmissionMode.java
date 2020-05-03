@@ -1,4 +1,4 @@
-package thirdparty;
+package com.dojczmaszin.thirdparty;
 
 /**
  * Gearbox states - P R N D

@@ -1,6 +1,8 @@
-package thirdparty;
+package com.dojczmaszin.thirdparty;
 
-import thirdparty.raw.Gearbox;
+import com.dojczmaszin.gears.Gear;
+import com.dojczmaszin.gears.RegularGear;
+import com.dojczmaszin.thirdparty.raw.Gearbox;
 
 public class WrappedGearbox {
 

@@ -1,4 +1,6 @@
-import thirdparty.WrappedGearbox;
+package com.dojczmaszin;
+
+import com.dojczmaszin.thirdparty.WrappedGearbox;
 
 public class GearboxDriver {
 
