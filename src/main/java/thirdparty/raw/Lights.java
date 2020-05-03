@@ -1,4 +1,4 @@
-package thirdparty;
+package thirdparty.raw;
 
 public class Lights {
 }
