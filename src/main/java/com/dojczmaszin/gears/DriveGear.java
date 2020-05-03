@@ -1,12 +1,12 @@
 package com.dojczmaszin.gears;
 
-public class RegularGear implements Gear {
+public class DriveGear implements Gear {
 
     private int number;
     private final int maxGearNumber;
 
 
-    public RegularGear(int number, int maxGearNumber) {
+    public DriveGear(int number, int maxGearNumber) {
         this.number = number;
         this.maxGearNumber = maxGearNumber;
     }
@@ -15,7 +15,7 @@ public class RegularGear implements Gear {
         if (isCurrentGearMax()) {
             return this;
         }
-        return new RegularGear(this.number + 1, this.maxGearNumber);
+        return new DriveGear(this.number + 1, this.maxGearNumber);
     }
 
     @Override
@@ -23,7 +23,7 @@ public class RegularGear implements Gear {
         if (isNextDownshiftNeutral()) {
             return new NeutralGear(this.maxGearNumber);
         }
-        return new RegularGear(this.number - 1, this.maxGearNumber);
+        return new DriveGear(this.number - 1, this.maxGearNumber);
     }
 
     private boolean isNextDownshiftNeutral() {

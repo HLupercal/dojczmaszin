@@ -1,8 +1,11 @@
 package com.dojczmaszin.thirdparty;
 
 import com.dojczmaszin.gears.Gear;
-import com.dojczmaszin.gears.RegularGear;
+import com.dojczmaszin.gears.DriveGear;
+import com.dojczmaszin.gears.NeutralGear;
 import com.dojczmaszin.thirdparty.raw.Gearbox;
+import com.dojczmaszin.transmission.Neutral;
+import com.dojczmaszin.transmission.TransmissionMode;
 
 public class WrappedGearbox {
 
@@ -12,10 +15,10 @@ public class WrappedGearbox {
     private Gear currentGear;
 
     public WrappedGearbox() {
-        this(DEFAULT_MAX_GEAR, TransmissionMode.NEUTRAL, new RegularGear(0));
+        this(DEFAULT_MAX_GEAR, new Neutral(), new NeutralGear(DEFAULT_MAX_GEAR));
     }
 
-    public WrappedGearbox(int maxGear, TransmissionMode transmissionMode, RegularGear currentGear) {
+    private WrappedGearbox(int maxGear, TransmissionMode transmissionMode, Gear currentGear) {
         this.gearbox = new Gearbox();
         this.gearbox.setCurrentGear(0);
         this.gearbox.setMaxDrive(maxGear);
@@ -28,15 +31,13 @@ public class WrappedGearbox {
         return this.gearbox.getMaxDrive();
     }
 
-    private Gear shiftUp() {
-        if this.currentGear == this.curr
+//    private Gear shiftUp() {
+//        if this.currentGear == this.curr
+//
+//    }
 
-    }
 
-    private Gear
-
-    private RegularGear getCurrentGear(){
-        Integer currentGear = (Integer) this.gearbox.getCurrentGear();
-        return new RegularGear(currentGear);
+    private Gear getCurrentGear(){
+        return this.currentGear;
     }
 }

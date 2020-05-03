@@ -10,11 +10,11 @@ public class NeutralGear implements Gear {
 
     @Override
     public Gear shiftUp() {
-        return new RegularGear(1, this.maxGearNumber);
+        return new DriveGear(1, this.maxGearNumber);
     }
 
     @Override
     public Gear shiftDown() {
-        return new ReverseGear();
+        return new ReverseGear(this.maxGearNumber);
     }
 }

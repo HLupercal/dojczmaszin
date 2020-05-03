@@ -8,8 +8,13 @@ public class GearboxDriver {
 
 
 
-    public void handleGas(int rpm) {
-        gearbox.handleRpm(rpm)
+    public void handleAccelerationEvent() {
+
+
+    }
+
+    public void handleDeaccelerationEvent() {
+
     }
 
 }
