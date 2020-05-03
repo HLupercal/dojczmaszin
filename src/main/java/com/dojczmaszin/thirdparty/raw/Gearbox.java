@@ -11,6 +11,10 @@ public class Gearbox {
         return gearBoxCurrentParams[0];
     }
 
+    public Object getCurrentGear() {
+        return gearBoxCurrentParams[1];
+    }
+
     public void setCurrentGear(int currentGear) {
         gearBoxCurrentParams[1] = currentGear;
     }
