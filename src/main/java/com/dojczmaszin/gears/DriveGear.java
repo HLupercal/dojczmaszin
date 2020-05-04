@@ -1,36 +1,24 @@
 package com.dojczmaszin.gears;
 
+import java.util.Objects;
+
 public class DriveGear implements Gear {
-
     private int number;
-    private final int maxGearNumber;
 
-
-    public DriveGear(int number, int maxGearNumber) {
+    public DriveGear(int number) {
         this.number = number;
-        this.maxGearNumber = maxGearNumber;
-    }
-
-    public Gear shiftUp() {
-        if (isCurrentGearMax()) {
-            return this;
-        }
-        return new DriveGear(this.number + 1, this.maxGearNumber);
     }
 
     @Override
-    public Gear shiftDown() {
-        if (isNextDownshiftNeutral()) {
-            return new NeutralGear(this.maxGearNumber);
-        }
-        return new DriveGear(this.number - 1, this.maxGearNumber);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DriveGear driveGear = (DriveGear) o;
+        return number == driveGear.number;
     }
 
-    private boolean isNextDownshiftNeutral() {
-        return this.number == 1;
-    }
-
-    private boolean isCurrentGearMax() {
-        return this.number == this.maxGearNumber;
+    @Override
+    public int hashCode() {
+        return Objects.hash(number);
     }
 }
