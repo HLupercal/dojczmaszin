@@ -2,7 +2,6 @@ package com.dojczmaszin.gears;
 
 import com.dojczmaszin.thirdparty.WrappedExternalSystems;
 import com.dojczmaszin.thirdparty.WrappedGearbox;
-import com.dojczmaszin.transmission.Kickdown;
 
 public class KickedDownGear implements Gear {
     //TODO: make final
@@ -30,17 +29,29 @@ public class KickedDownGear implements Gear {
 
     @Override
     public Gear handleRpmIncrease(double shiftDownThreshold, double shiftUpThreshold) {
-        //special case - directly after kick down, change back to regular drive gear
-        return new DriveGear(this.number ,this.wrappedGearbox, this.wrappedExternalSystems);
+        //special case - while stil reving up directly after a kick down, change back to regular drive gear without doing anything
+        return new DriveGear(this.number, this.wrappedGearbox, this.wrappedExternalSystems);
+    }
+
+    @Override
+    public Gear handleKickDown(double kickDownRpmThreshold, int howManyDownshifts) {
+        //a kicked down gear cant handle another kickdown (although maybe it should?)
+        return new DriveGear(this.number, this.wrappedGearbox, this.wrappedExternalSystems);
     }
 
     @Override
     public int getNativeGearNumber() {
-        return new DriveGear(this.number ,this.wrappedGearbox, this.wrappedExternalSystems).getNativeGearNumber();
+        return new DriveGear(this.number, this.wrappedGearbox, this.wrappedExternalSystems).getNativeGearNumber();
     }
 
     @Override
     public int getNativeModeNumber() {
-        return new DriveGear(this.number ,this.wrappedGearbox, this.wrappedExternalSystems).getNativeModeNumber();
+        return new DriveGear(this.number, this.wrappedGearbox, this.wrappedExternalSystems).getNativeModeNumber();
+    }
+
+    @Override
+    public Gear handleRpmDecrease(double shiftDownRpmThreshold) {
+        //downreving doesnt work the same as reving up post kickdown, so just downshift regularly
+        return new DriveGear(this.number, this.wrappedGearbox, this.wrappedExternalSystems).handleRpmDecrease(shiftDownRpmThreshold);
     }
 }
