@@ -43,13 +43,13 @@ public class DriveGear implements Gear {
         return new DriveGear(this.number--, this.wrappedGearbox, this.wrappedExternalSystems);
     }
 
-//    @Override
-//    public Gear handleRpmDecrease(double rpmThreshold) {
-//        if (wrappedExternalSystems.getCurrentRpm() < rpmThreshold) {
-//            this.shiftDown();
-//        }
-//        return this;
-//    }
+    @Override
+    public Gear handleRpmDecrease(double shiftDownRpmThreshold) {
+        if (wrappedExternalSystems.getCurrentRpm() < shiftDownRpmThreshold) {
+            this.shiftDown();
+        }
+        return this;
+    }
 
 
 
@@ -64,15 +64,17 @@ public class DriveGear implements Gear {
         return this;
     }
 
-    //inject how to do it
-    public Gear handleRpmIncrease(double shiftDownThreshold, double shiftUpThreshold, Kickdown kickdown) {
-        if (wrappedExternalSystems.getCurrentRpm() > shiftUpThreshold) {
-            this.shiftUp();
-        } else if (wrappedExternalSystems.getCurrentRpm() < shiftDownThreshold){
-            this.shiftDown();
+    @Override
+    public Gear handleKickDown(double kickDownThreshold, int howManyDownshifts) {
+        Gear gear = this;
+        if(wrappedExternalSystems.getCurrentRpm() < kickDownThreshold) {
+            for (int i = 0; i < howManyDownshifts; i++) {
+                gear = this.shiftDown();
+            }
         }
-        return this;
+        return gear;
     }
+
 
     @Override
     public int getNativeGearNumber() {

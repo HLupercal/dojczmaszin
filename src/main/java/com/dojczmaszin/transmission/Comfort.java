@@ -6,6 +6,7 @@ public class Comfort implements Transmission, Kickdownable {
 
     private double shiftDownWhenAcceleratingRpmThreshold;
     private double shiftUpWhenAcceleratingRpmThreshold;
+    private double shiftDownWhenDeaccelerating;
     private Kickdown kickdown;
     private Gear currentGear;
 
@@ -25,17 +26,14 @@ public class Comfort implements Transmission, Kickdownable {
         return currentGear.handleRpmIncrease(this.shiftDownWhenAcceleratingRpmThreshold,
                 this.shiftUpWhenAcceleratingRpmThreshold);
     }
-
-
-
-
+    
     @Override
-    public Gear handleRpmDecrease(double rpmDelta) {
-//        return currentGear.handleRpmDecrease(this.shiftUpWhenAcceleratingRpmThreshold);
+    public Gear handleDeacceleration(double rpmDelta) {
+        return currentGear.handleRpmDecrease(this.shiftDownWhenDeaccelerating);
     }
 
     @Override
     public Gear handleKickdown(double pedalDepth) {
-      return kickdown.handle(pedalDepth, currentGear);
+        return kickdown.handle(pedalDepth, currentGear);
     }
 }

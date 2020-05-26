@@ -15,7 +15,7 @@ public class SingleKickDown implements Kickdown {
     @Override
     public Gear handle(double currentPedalDepth, Gear currentGear) {
         if (currentPedalDepth > pedalDepthThreshold) {
-            return currentGear.handleRpmDecrease(this.kickDownRpmThreshold);
+            return currentGear.handleKickDown(this.kickDownRpmThreshold, 1);
         }
 
         return currentGear;

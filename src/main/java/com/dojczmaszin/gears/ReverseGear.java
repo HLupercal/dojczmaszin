@@ -13,6 +13,13 @@ public class ReverseGear implements Gear {
     }
 
     @Override
+    public Gear handleRpmIncrease(double shiftDownThreshold, double shiftUpThreshold) {
+
+        //TODO: implement
+        return null;
+    }
+
+    @Override
     public int getNativeGearNumber() {
         return -1;
     }

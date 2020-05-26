@@ -7,5 +7,5 @@ public interface Transmission {
     //transmission would hold the currentGear and create a new transmissionmode with each gear up or down
     Gear handleAcceleration(double pedalDepth, double rpmDelta);
 
-    Gear handleRpmDecrease(double rpmDelta);
+    Gear handleDeacceleration(double rpmDelta);
 }
