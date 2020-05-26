@@ -2,7 +2,8 @@ package com.dojczmaszin.gears;
 
 import com.dojczmaszin.thirdparty.WrappedGearbox;
 
-public class NeutralGear implements Gear {
+public class ParkGear implements Gear {
+
 
     private WrappedGearbox wrappedGearbox;
 
@@ -23,6 +24,8 @@ public class NeutralGear implements Gear {
 
     @Override
     public int getNativeModeNumber() {
-        return 4;
+        return 2;
     }
+
+
 }

@@ -21,6 +21,16 @@ public class WrappedGearbox {
         this.currentGear = currentGear;
     }
 
+    public void setCurrentGear(Gear currentGear) {
+        this.currentGear = currentGear;
+        gearbox.setCurrentGear(currentGear.getNativeGearNumber());
+        //move this to dedicated resolving function
+        gearbox.setGearBoxCurrentParams(new Object[]{
+                currentGear.getNativeGearNumber(),
+                currentGear.getNativeModeNumber()});
+
+    }
+
     public int getMaxGear() {
         return this.gearbox.getMaxDrive();
     }

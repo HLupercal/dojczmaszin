@@ -1,12 +1,16 @@
 package com.dojczmaszin.gears;
 
+import com.dojczmaszin.thirdparty.WrappedGearbox;
+
 import java.util.Objects;
 
 public class DriveGear implements Gear {
     private int number;
+    private WrappedGearbox wrappedGearbox;
 
-    public DriveGear(int number) {
+    public DriveGear(int number, WrappedGearbox wrappedGearbox) {
         this.number = number;
+        this.wrappedGearbox = wrappedGearbox;
     }
 
     @Override
@@ -24,7 +28,7 @@ public class DriveGear implements Gear {
 
     @Override
     public Gear shiftUp() {
-        return new DriveGear(this.number++);
+        return new DriveGear(this.number++, this.wrappedGearbox);
     }
 
     @Override
@@ -32,6 +36,16 @@ public class DriveGear implements Gear {
         if (this.number == 1) {
             return new NeutralGear();
         }
-        return new DriveGear(this.number--);
+        return new DriveGear(this.number--, this.wrappedGearbox);
+    }
+
+    @Override
+    public int getNativeGearNumber() {
+        return number;
+    }
+
+    @Override
+    public int getNativeModeNumber() {
+        return 1;
     }
 }
