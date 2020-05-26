@@ -31,12 +31,6 @@ public class WrappedGearbox {
         return this.gearbox.getMaxDrive();
     }
 
-//    private Gear shiftUp() {
-//        if this.currentGear == this.curr
-//
-//    }
-
-
     private Gear getCurrentGear() {
         return this.currentGear;
     }

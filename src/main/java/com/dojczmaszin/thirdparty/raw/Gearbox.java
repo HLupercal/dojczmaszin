@@ -21,6 +21,7 @@ public class Gearbox {
 
     public void setGearBoxCurrentParams(Object[] gearBoxCurrentParams) {
         if (gearBoxCurrentParams[0] != this.gearBoxCurrentParams[0]) {
+            //zmienil sie state
             this.gearBoxCurrentParams[0] = gearBoxCurrentParams[0];
             Integer state = (Integer) gearBoxCurrentParams[0];
             if (state == 2) {
@@ -34,7 +35,7 @@ public class Gearbox {
             }
             setCurrentGear((Integer) gearBoxCurrentParams[1]);
         } else {
-            setCurrentGear((Integer) gearBoxCurrentParams[1]);
+           setCurrentGear((Integer) gearBoxCurrentParams[1]);
         }
     }
 
@@ -46,4 +47,5 @@ public class Gearbox {
         this.maxDrive = maxDrive;
     }
 
+    
 }
