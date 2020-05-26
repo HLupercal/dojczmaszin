@@ -8,12 +8,12 @@ public class GearboxDriver {
 
 
 
-    public void handleAccelerationEvent() {
+    public void handleRpmIncrease() {
 
 
     }
 
-    public void handleDeaccelerationEvent() {
+    public void handleRpmDecrease() {
 
     }
 
