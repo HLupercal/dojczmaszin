@@ -9,7 +9,7 @@ public class Comfort implements Transmission {
     private double shiftUpWhenAcceleratingRpmThreshold;
     private double shiftDownWhenKickdownAcceleratingRpmThreshold;
     private double kickdownPedalDepthThreshold;
-    private WrappedGearbox wrappedGearbox;
+    private Gear currentGear;
 
     public Comfort() {
 
@@ -19,12 +19,12 @@ public class Comfort implements Transmission {
                    double shiftUpWhenAcceleratingRpmThreshold,
                    double shiftDownWhenKickdownAcceleratingRpmThreshold,
                    double kickdownPedalDepthThreshold,
-                   WrappedGearbox wrappedGearbox) {
+                   Gear currentGear) {
         this.shiftDownWhenAcceleratingRpmThreshold = shiftDownWhenAcceleratingRpmThreshold;
         this.shiftUpWhenAcceleratingRpmThreshold = shiftUpWhenAcceleratingRpmThreshold;
         this.shiftDownWhenKickdownAcceleratingRpmThreshold = shiftDownWhenKickdownAcceleratingRpmThreshold;
         this.kickdownPedalDepthThreshold = kickdownPedalDepthThreshold;
-        this.wrappedGearbox = wrappedGearbox;
+        this.currentGear = currentGear;
     }
 
     @Override

@@ -2,13 +2,13 @@ package com.dojczmaszin.thirdparty;
 
 import com.dojczmaszin.gears.Gear;
 import com.dojczmaszin.gears.NeutralGear;
-import com.dojczmaszin.thirdparty.raw.Gearbox;
 
 public class WrappedGearbox {
 
     private Gearbox gearbox;
     private static final int DEFAULT_MAX_GEAR = 8;
     private Gear currentGear;
+
 
     public WrappedGearbox() {
         this(DEFAULT_MAX_GEAR, new NeutralGear());
@@ -28,6 +28,7 @@ public class WrappedGearbox {
         gearbox.setGearBoxCurrentParams(new Object[]{
                 currentGear.getNativeGearNumber(),
                 currentGear.getNativeModeNumber()});
+        //i assume rpm changes automatically when a gear is shifted
 
     }
 

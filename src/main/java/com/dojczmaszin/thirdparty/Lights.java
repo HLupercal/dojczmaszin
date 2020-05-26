@@ -1,4 +1,4 @@
-package com.dojczmaszin.thirdparty.raw;
+package com.dojczmaszin.thirdparty;
 
 public class Lights {
 
