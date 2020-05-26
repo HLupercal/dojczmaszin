@@ -4,13 +4,14 @@ import com.dojczmaszin.gears.Gear;
 import com.dojczmaszin.gears.NeutralGear;
 import com.dojczmaszin.thirdparty.WrappedExternalSystems;
 import com.dojczmaszin.transmission.Comfort;
+import com.dojczmaszin.transmission.Kickdown;
 import com.dojczmaszin.transmission.Transmission;
 import org.junit.jupiter.api.Test;
 
 class GearboxDriverTest {
 
     @Test
-    void handleRpmIncrease() {
+    void handleComfortRpmIncrease() {
         Gear neutralGear = new NeutralGear();
         Transmission transmission = new Comfort(1000d,
                 2500d,
@@ -19,6 +20,6 @@ class GearboxDriverTest {
                 neutralGear);
 
         WrappedExternalSystems externalSystems = new WrappedExternalSystems();
-        transmission.handleRpmIncrease(1500d);
+        transmission.handleRpmIncrease(1500d , Kickdown kickdown);
     }
 }

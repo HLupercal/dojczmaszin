@@ -9,7 +9,7 @@ public class WrappedGearbox {
     private static final int DEFAULT_MAX_GEAR = 8;
     private Gear currentGear;
 
-
+    //assumed defaults
     public WrappedGearbox() {
         this(DEFAULT_MAX_GEAR, new NeutralGear());
     }

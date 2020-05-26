@@ -28,12 +28,12 @@ public class Comfort implements Transmission {
     }
 
     @Override
-    public Gear handleRpmIncrease() {
+    public Gear handleRpmIncrease(double rpmDelta) {
         return null;
     }
 
     @Override
-    public Gear handleRpmDecrease() {
+    public Gear handleRpmDecrease(double rpmDelta) {
         return null;
     }
 }
