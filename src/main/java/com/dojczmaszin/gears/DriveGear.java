@@ -21,4 +21,17 @@ public class DriveGear implements Gear {
     public int hashCode() {
         return Objects.hash(number);
     }
+
+    @Override
+    public Gear shiftUp() {
+        return new DriveGear(this.number++);
+    }
+
+    @Override
+    public Gear shiftDown() {
+        if (this.number == 1) {
+            return new NeutralGear();
+        }
+        return new DriveGear(this.number--);
+    }
 }
