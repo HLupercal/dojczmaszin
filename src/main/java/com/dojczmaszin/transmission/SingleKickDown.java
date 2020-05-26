@@ -4,8 +4,19 @@ import com.dojczmaszin.gears.Gear;
 
 public class SingleKickDown implements Kickdown {
 
-    @Override
-    public Gear handleThreshold(double pedalDepthThreshold, Gear currentGear) {
-         currentGear.shiftDown();
+    private double pedalDepthThreshold;
+
+    public SingleKickDown(double pedalDepthThreshold) {
+        this.pedalDepthThreshold = pedalDepthThreshold;
     }
+
+    @Override
+    public Gear handle(double currentPedalDepth, Gear currentGear) {
+        if (currentPedalDepth > pedalDepthThreshold) {
+            return currentGear.shiftDown();
+        }
+
+        return currentGear;
+    }
+
 }
