@@ -1,16 +1,20 @@
 package com.dojczmaszin.gears;
 
+import com.dojczmaszin.thirdparty.WrappedExternalSystems;
 import com.dojczmaszin.thirdparty.WrappedGearbox;
+import com.dojczmaszin.transmission.Kickdown;
 
 import java.util.Objects;
 
 public class DriveGear implements Gear {
     private int number;
     private WrappedGearbox wrappedGearbox;
+    private WrappedExternalSystems wrappedExternalSystems;
 
-    public DriveGear(int number, WrappedGearbox wrappedGearbox) {
+    public DriveGear(int number, WrappedGearbox wrappedGearbox, WrappedExternalSystems wrappedExternalSystems) {
         this.number = number;
         this.wrappedGearbox = wrappedGearbox;
+        this.wrappedExternalSystems = wrappedExternalSystems;
     }
 
     @Override
@@ -28,7 +32,7 @@ public class DriveGear implements Gear {
 
     @Override
     public Gear shiftUp() {
-        return new DriveGear(this.number++, this.wrappedGearbox);
+        return new DriveGear(this.number++, this.wrappedGearbox, this.wrappedExternalSystems);
     }
 
     @Override
@@ -36,7 +40,38 @@ public class DriveGear implements Gear {
         if (this.number == 1) {
             return new NeutralGear();
         }
-        return new DriveGear(this.number--, this.wrappedGearbox);
+        return new DriveGear(this.number--, this.wrappedGearbox, this.wrappedExternalSystems);
+    }
+
+//    @Override
+//    public Gear handleRpmDecrease(double rpmThreshold) {
+//        if (wrappedExternalSystems.getCurrentRpm() < rpmThreshold) {
+//            this.shiftDown();
+//        }
+//        return this;
+//    }
+
+
+
+
+    @Override
+    public Gear handleRpmIncrease(double shiftDownThreshold, double shiftUpThreshold) {
+        if (wrappedExternalSystems.getCurrentRpm() > shiftUpThreshold) {
+            this.shiftUp();
+        } else if (wrappedExternalSystems.getCurrentRpm() < shiftDownThreshold){
+            this.shiftDown();
+        }
+        return this;
+    }
+
+    //inject how to do it
+    public Gear handleRpmIncrease(double shiftDownThreshold, double shiftUpThreshold, Kickdown kickdown) {
+        if (wrappedExternalSystems.getCurrentRpm() > shiftUpThreshold) {
+            this.shiftUp();
+        } else if (wrappedExternalSystems.getCurrentRpm() < shiftDownThreshold){
+            this.shiftDown();
+        }
+        return this;
     }
 
     @Override

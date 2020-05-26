@@ -14,14 +14,13 @@ class GearboxDriverTest {
     @Test
     void handleComfortRpmIncrease() {
         Gear neutralGear = new NeutralGear();
-        Kickdown kickdown = new SingleKickDown(0.5d);
+        Kickdown kickdown = new SingleKickDown(0.5d, 5000d);
         Transmission transmission = new Comfort(1000d,
                 2500d,
-                4500d,
                 kickdown,
                 neutralGear);
 
         WrappedExternalSystems externalSystems = new WrappedExternalSystems();
-        transmission.handleRpmIncrease(1500d);
+        transmission.handleAcceleration(1500d, 3000d);
     }
 }
