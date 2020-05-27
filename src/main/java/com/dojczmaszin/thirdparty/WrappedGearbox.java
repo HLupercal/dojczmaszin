@@ -9,11 +9,6 @@ public class WrappedGearbox {
     private static final int DEFAULT_MAX_GEAR = 8;
     private Gear currentGear;
 
-    //assumed defaults
-    public WrappedGearbox() {
-        this(DEFAULT_MAX_GEAR, new NeutralGear());
-    }
-
     private WrappedGearbox(int maxGear, Gear currentGear) {
         this.gearbox = new Gearbox();
         this.gearbox.setCurrentGear(0);

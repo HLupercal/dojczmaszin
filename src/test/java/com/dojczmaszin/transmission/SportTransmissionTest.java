@@ -17,13 +17,13 @@ public class SportTransmissionTest {
 
         //given
         WrappedExternalSystems externalSystems = new WrappedExternalSystems();
-        DriveGear gear = new DriveGear(5, externalSystems);
+        DriveGear gear = new DriveGear(5, externalSystems, 8);
         Transmission sportTransmission = getDefaultSportTransmissionInGear(gear);
 
         //when kicking down hard with low enough rewolutjones per minute
         Gear resultGear = sportTransmission.handleAcceleration(0.9d, 4000d);
         //then should downshift twice
-        assertEquals(new DriveGear(3, externalSystems), resultGear);
+        assertEquals(new DriveGear(3, externalSystems, 8), resultGear);
 
     }
 
@@ -32,13 +32,13 @@ public class SportTransmissionTest {
 
         //given
         WrappedExternalSystems externalSystems = new WrappedExternalSystems();
-        DriveGear gear = new DriveGear(5, externalSystems);
+        DriveGear gear = new DriveGear(5, externalSystems, 8);
         Transmission sportTransmission = getDefaultSportTransmissionInGear(gear);
 
         //when kicking down light with low enough rewolutjones per minute
         Gear resultGear = sportTransmission.handleAcceleration(0.6d, 5500d);
         //then should downshift once
-        assertEquals(new DriveGear(2, externalSystems), resultGear);
+        assertEquals(new DriveGear(2, externalSystems, 8), resultGear);
 
     }
 

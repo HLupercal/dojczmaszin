@@ -1,12 +1,16 @@
 package com.dojczmaszin.gears;
 
+import com.dojczmaszin.thirdparty.WrappedExternalSystems;
+
 public class ReverseGear implements Gear {
 
     private int number = -1;
+    private WrappedExternalSystems wrappedExternalSystems;
+    private int maxNumber;
 
     @Override
     public Gear shiftUp() {
-        return new NeutralGear();
+        return new NeutralGear(this.wrappedExternalSystems, this.maxNumber);
     }
 
     @Override

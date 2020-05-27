@@ -7,21 +7,24 @@ import java.util.Objects;
 public class DriveGear implements Gear {
     private int number;
     private WrappedExternalSystems wrappedExternalSystems;
+    private int maxNumber;
 
     @Override
     public String toString() {
         return "DriveGear{" +
                 "number=" + number +
                 ", wrappedExternalSystems=" + wrappedExternalSystems +
+                ", maxNumber=" + maxNumber +
                 '}';
     }
 
-    public DriveGear(int number, WrappedExternalSystems wrappedExternalSystems) {
-        if (number < 1) {
+    public DriveGear(int number, WrappedExternalSystems wrappedExternalSystems, int maxNumber) {
+        if (number < 1 || number > maxNumber) {
             throw new UnsupportedOperationException();
         }
         this.number = number;
         this.wrappedExternalSystems = wrappedExternalSystems;
+        this.maxNumber = maxNumber;
     }
 
 
@@ -40,15 +43,19 @@ public class DriveGear implements Gear {
 
     @Override
     public Gear shiftUp() {
-        return new DriveGear(this.number + 1, this.wrappedExternalSystems);
+        //TODO: maybe use a factory of sorts that would decide what to return?
+        if (this.number + 1 == this.maxNumber) {
+            return new MaxDriveGear(maxNumber, this.wrappedExternalSystems);
+        }
+        return new DriveGear(this.number + 1, this.wrappedExternalSystems, this.maxNumber);
     }
 
     @Override
     public Gear shiftDown() {
         if (this.number == 1) {
-            return new NeutralGear();
+            return new NeutralGear(this.wrappedExternalSystems, this.maxNumber);
         }
-        return new DriveGear(this.number - 1, this.wrappedExternalSystems);
+        return new DriveGear(this.number - 1, this.wrappedExternalSystems, this.maxNumber);
     }
 
     private Gear nonNeutralShiftDown() {
@@ -56,7 +63,7 @@ public class DriveGear implements Gear {
         if (this.number == 1) {
             return this;
         }
-        return new DriveGear(this.number - 1, this.wrappedExternalSystems);
+        return new DriveGear(this.number - 1, this.wrappedExternalSystems, this.maxNumber);
     }
 
     @Override

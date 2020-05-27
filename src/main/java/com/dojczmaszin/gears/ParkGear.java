@@ -7,9 +7,13 @@ import java.util.Objects;
 public class ParkGear implements Gear {
 
     private int number = 0;
-
     private WrappedExternalSystems wrappedExternalSystems;
+    private int maxNumber;
 
+    public ParkGear(WrappedExternalSystems wrappedExternalSystems, int maxNumber) {
+        this.wrappedExternalSystems = wrappedExternalSystems;
+        this.maxNumber = maxNumber;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -26,7 +30,7 @@ public class ParkGear implements Gear {
 
     @Override
     public Gear shiftUp() {
-        return new DriveGear(1, wrappedExternalSystems);
+        return new DriveGear(1, this.wrappedExternalSystems, this.maxNumber);
     }
 
     @Override

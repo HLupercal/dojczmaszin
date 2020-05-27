@@ -15,7 +15,9 @@ class ComfortTransmissionTest {
     @Test
     void testComfortNeutralKickdown() {
         //given
-        Gear neutralGear = new NeutralGear();
+
+        WrappedExternalSystems externalSystems = new WrappedExternalSystems();
+        Gear neutralGear = new NeutralGear(externalSystems, 8);
         Kickdown kickdown = new SingleKickDown(0.5d, 5000d);
         Transmission transmission = new Comfort(1000d,
                 2500d,
@@ -24,18 +26,17 @@ class ComfortTransmissionTest {
 
         getDefaultComfortTransmissionInGear(neutralGear);
 
-        WrappedExternalSystems externalSystems = new WrappedExternalSystems();
         //when kickdown and revving
         Gear resultGear = transmission.handleAcceleration(0.6d, 3000d);
 
         //then should do nothing on neutral
-        assertEquals(new NeutralGear(), resultGear);
+        assertEquals(new NeutralGear(externalSystems, 8), resultGear);
     }
 
     @Test
     void testComfortDriveKickdown() {
         WrappedExternalSystems externalSystems = new WrappedExternalSystems();
-        Gear driveGear = new DriveGear(2, externalSystems);
+        Gear driveGear = new DriveGear(2, externalSystems, 8);
         Transmission transmission = getDefaultComfortTransmissionInGear(driveGear);
 
 
@@ -43,7 +44,7 @@ class ComfortTransmissionTest {
         Gear resultGear = transmission.handleAcceleration(0.6d, 3000d);
 
         //then should kick down one gear
-        assertEquals(new DriveGear(1, externalSystems), resultGear);
+        assertEquals(new DriveGear(1, externalSystems, 8), resultGear);
     }
 
     private Transmission getDefaultComfortTransmissionInGear(Gear gear) {

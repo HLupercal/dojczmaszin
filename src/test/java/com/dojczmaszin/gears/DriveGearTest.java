@@ -14,31 +14,31 @@ class DriveGearTest {
     @Test
     void down_shift_from_one_should_result_in_neutral() {
         WrappedExternalSystems wrappedExternalSystems = new WrappedExternalSystems();
-        DriveGear gear = new DriveGear(1, wrappedExternalSystems);
+        DriveGear gear = new DriveGear(1, wrappedExternalSystems, 8);
         Gear result = gear.shiftDown();
-        assertEquals(new NeutralGear(), result);
+        assertEquals(new NeutralGear(wrappedExternalSystems, 8), result);
     }
 
     @Test
     void down_shift_from_not_one_should_result_in_one_lower_drive_gear() {
         WrappedExternalSystems wrappedExternalSystems = new WrappedExternalSystems();
-        DriveGear gear = new DriveGear(4, wrappedExternalSystems);
+        DriveGear gear = new DriveGear(4, wrappedExternalSystems, 8);
         Gear result = gear.shiftDown();
-        assertEquals(new DriveGear(3, wrappedExternalSystems), result);
+        assertEquals(new DriveGear(3, wrappedExternalSystems, 8), result);
     }
 
     @Test
     void up_shift_from_one_or_above_should_result_in_one_higher_drive_gear() {
         WrappedExternalSystems wrappedExternalSystems = new WrappedExternalSystems();
-        DriveGear gear = new DriveGear(4, wrappedExternalSystems);
+        DriveGear gear = new DriveGear(4, wrappedExternalSystems, 8);
         Gear result = gear.shiftUp();
-        assertEquals(new DriveGear(5, wrappedExternalSystems), result);
+        assertEquals(new DriveGear(5, wrappedExternalSystems, 8), result);
     }
 
     @Test
     void up_shift_from_max_gear_minus_one_should_result_in_max_gear() {
         WrappedExternalSystems wrappedExternalSystems = new WrappedExternalSystems();
-        DriveGear gear = new DriveGear(7, wrappedExternalSystems);
+        DriveGear gear = new DriveGear(7, wrappedExternalSystems, 8);
         Gear result = gear.shiftUp();
         assertEquals(new MaxDriveGear(8, wrappedExternalSystems), result);
     }

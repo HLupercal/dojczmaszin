@@ -34,7 +34,7 @@ public class MaxDriveGear implements Gear {
 
     @Override
     public Gear shiftDown() {
-        return new DriveGear(this.number--, this.wrappedExternalSystems);
+        return new DriveGear(this.number--, this.wrappedExternalSystems, this.number);
     }
 
     @Override
