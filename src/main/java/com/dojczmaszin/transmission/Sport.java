@@ -2,7 +2,7 @@ package com.dojczmaszin.transmission;
 
 import com.dojczmaszin.gears.Gear;
 
-public class Comfort implements Transmission {
+public class Sport implements Transmission {
 
     private double shiftDownWhenAcceleratingRpmThreshold;
     private double shiftUpWhenAcceleratingRpmThreshold;
@@ -10,15 +10,16 @@ public class Comfort implements Transmission {
     private Kickdown kickdown;
     private Gear currentGear;
 
-    public Comfort(double shiftDownWhenAcceleratingRpmThreshold,
-                   double shiftUpWhenAcceleratingRpmThreshold,
-                   Kickdown kickdown,
-                   Gear currentGear) {
+    public Sport(double shiftDownWhenAcceleratingRpmThreshold,
+                 double shiftUpWhenAcceleratingRpmThreshold,
+                 Kickdown kickdown,
+                 Gear currentGear) {
         this.shiftDownWhenAcceleratingRpmThreshold = shiftDownWhenAcceleratingRpmThreshold;
         this.shiftUpWhenAcceleratingRpmThreshold = shiftUpWhenAcceleratingRpmThreshold;
         this.shiftDownWhenDeacceleratingRpmThreshold = shiftDownWhenAcceleratingRpmThreshold;
         this.kickdown = kickdown;
         this.currentGear = currentGear;
+
     }
 
     @Override
@@ -27,10 +28,9 @@ public class Comfort implements Transmission {
         return currentGear.handleRpmIncrease(this.shiftDownWhenAcceleratingRpmThreshold,
                 this.shiftUpWhenAcceleratingRpmThreshold);
     }
-    
+
     @Override
     public Gear handleDeacceleration(double rpmDelta) {
         return currentGear.handleRpmDecrease(this.shiftDownWhenDeacceleratingRpmThreshold);
     }
-
 }

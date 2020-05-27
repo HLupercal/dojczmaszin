@@ -5,11 +5,9 @@ public interface Gear {
     public Gear shiftUp();
     public Gear shiftDown();
     public Gear handleRpmIncrease(double shiftDownRpmThreshold, double shiftUpRpmThreshold);
-//    public Gear handleRpmDecrease(double rpmThreshold);
-//    public Gear handleRpmIncrease(double rpmThreshold);
-    public Gear handleKickDown(double kickDownRpmThreshold, int howManyDownshifts);
     public int getNativeGearNumber();
     public int getNativeModeNumber();
+    Gear handleKickDown(double kickDownRpmThreshold, int howManyDownshifts);
 
     public Gear handleRpmDecrease(double shiftDownRpmThreshold);
 }

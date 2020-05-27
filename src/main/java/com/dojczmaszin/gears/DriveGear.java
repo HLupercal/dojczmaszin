@@ -2,7 +2,6 @@ package com.dojczmaszin.gears;
 
 import com.dojczmaszin.thirdparty.WrappedExternalSystems;
 import com.dojczmaszin.thirdparty.WrappedGearbox;
-import com.dojczmaszin.transmission.Kickdown;
 
 import java.util.Objects;
 
@@ -12,6 +11,9 @@ public class DriveGear implements Gear {
     private WrappedExternalSystems wrappedExternalSystems;
 
     public DriveGear(int number, WrappedGearbox wrappedGearbox, WrappedExternalSystems wrappedExternalSystems) {
+        if (number < 1) {
+            throw new UnsupportedOperationException();
+        }
         this.number = number;
         this.wrappedGearbox = wrappedGearbox;
         this.wrappedExternalSystems = wrappedExternalSystems;
@@ -43,6 +45,13 @@ public class DriveGear implements Gear {
         return new DriveGear(this.number--, this.wrappedGearbox, this.wrappedExternalSystems);
     }
 
+    public Gear nonNeutralShiftDown() {
+        if(this.number == 1) {
+            return this;
+        }
+        return new DriveGear(this.number--, this.wrappedGearbox, this.wrappedExternalSystems);
+    }
+
     @Override
     public Gear handleRpmDecrease(double shiftDownRpmThreshold) {
         if (wrappedExternalSystems.getCurrentRpm() < shiftDownRpmThreshold) {
@@ -52,13 +61,11 @@ public class DriveGear implements Gear {
     }
 
 
-
-
     @Override
     public Gear handleRpmIncrease(double shiftDownThreshold, double shiftUpThreshold) {
         if (wrappedExternalSystems.getCurrentRpm() > shiftUpThreshold) {
             this.shiftUp();
-        } else if (wrappedExternalSystems.getCurrentRpm() < shiftDownThreshold){
+        } else if (wrappedExternalSystems.getCurrentRpm() < shiftDownThreshold) {
             this.shiftDown();
         }
         return this;
@@ -67,7 +74,7 @@ public class DriveGear implements Gear {
     @Override
     public Gear handleKickDown(double kickDownThreshold, int howManyDownshifts) {
         Gear gear = this;
-        if(wrappedExternalSystems.getCurrentRpm() < kickDownThreshold) {
+        if (wrappedExternalSystems.getCurrentRpm() < kickDownThreshold) {
             for (int i = 0; i < howManyDownshifts; i++) {
                 gear = this.shiftDown();
             }

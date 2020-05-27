@@ -16,7 +16,7 @@ index:
 5 - tryb COMFORT - rpm czy zrzucić bieg w kickdown
 
 6 - tryb SPORT -  rpm czy zrzucić bieg przy przyspieszaniu
-7 - tryb SPORT -  threshold naciśnięcia pedału gazu, żeby czy lekko przyspieszamy
+7 - tryb SPORT -  threshold naciśnięcia pedału gazu, żeby czy lekko przyspieszamy //i think this is redundant
 8 - tryb SPORT -  rpm czy zwiekszamy bieg w lekkim przyspieszeniu
 9 - tryb SPORT -  threshold naciśnięcia pedału gazu, żeby czy lekki kickdown
 10 - tryb SPORT -  rpm czy redukcja w lekkim kickdown
