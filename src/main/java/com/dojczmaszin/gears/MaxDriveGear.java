@@ -2,6 +2,8 @@ package com.dojczmaszin.gears;
 
 import com.dojczmaszin.thirdparty.WrappedExternalSystems;
 
+import java.util.Objects;
+
 public class MaxDriveGear implements Gear {
     private WrappedExternalSystems wrappedExternalSystems;
     private int number;
@@ -11,6 +13,19 @@ public class MaxDriveGear implements Gear {
         this.wrappedExternalSystems = wrappedExternalSystems;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MaxDriveGear that = (MaxDriveGear) o;
+        return number == that.number;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number);
+    }
 
     @Override
     public Gear shiftUp() {

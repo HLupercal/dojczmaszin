@@ -2,6 +2,8 @@ package com.dojczmaszin.gears;
 
 public class ReverseGear implements Gear {
 
+    private int number = -1;
+
     @Override
     public Gear shiftUp() {
         return new NeutralGear();
@@ -39,6 +41,6 @@ public class ReverseGear implements Gear {
 
     @Override
     public int getNumber() {
-        return -1;
+        return this.number;
     }
 }

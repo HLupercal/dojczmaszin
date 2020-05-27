@@ -1,6 +1,7 @@
 package com.dojczmaszin.transmission;
 
 import com.dojczmaszin.gears.Gear;
+import com.dojczmaszin.transmission.kickdown.Kickdown;
 
 public class Sport implements Transmission {
 
@@ -32,5 +33,15 @@ public class Sport implements Transmission {
     @Override
     public Gear handleDeacceleration(double rpmDelta) {
         return currentGear.handleRpmDecrease(this.shiftDownWhenDeacceleratingRpmThreshold);
+    }
+
+    @Override
+    public Gear handleManualUpshift() {
+        return currentGear.shiftUp();
+    }
+
+    @Override
+    public Gear handleManualDownshift() {
+        return currentGear.shiftDown();
     }
 }

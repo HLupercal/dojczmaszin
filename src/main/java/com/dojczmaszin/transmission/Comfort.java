@@ -1,6 +1,7 @@
 package com.dojczmaszin.transmission;
 
 import com.dojczmaszin.gears.Gear;
+import com.dojczmaszin.transmission.kickdown.Kickdown;
 
 public class Comfort implements Transmission {
 
@@ -31,6 +32,16 @@ public class Comfort implements Transmission {
     @Override
     public Gear handleDeacceleration(double rpmDelta) {
         return currentGear.handleRpmDecrease(this.shiftDownWhenDeacceleratingRpmThreshold);
+    }
+
+    @Override
+    public Gear handleManualUpshift() {
+        return this.currentGear.shiftUp();
+    }
+
+    @Override
+    public Gear handleManualDownshift() {
+        return this.currentGear.shiftDown();
     }
 
 }

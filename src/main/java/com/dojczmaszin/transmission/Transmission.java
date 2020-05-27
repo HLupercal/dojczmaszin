@@ -6,4 +6,8 @@ public interface Transmission {
     Gear handleAcceleration(double pedalDepth, double rpmDelta);
 
     Gear handleDeacceleration(double rpmDelta);
+
+    Gear handleManualUpshift();
+
+    Gear handleManualDownshift();
 }

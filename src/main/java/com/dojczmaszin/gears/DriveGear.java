@@ -16,10 +16,6 @@ public class DriveGear implements Gear {
         this.wrappedExternalSystems = wrappedExternalSystems;
     }
 
-    @Override
-    public int getNumber() {
-        return this.number;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -94,5 +90,10 @@ public class DriveGear implements Gear {
     @Override
     public int getNativeModeNumber() {
         return 1;
+    }
+
+    @Override
+    public int getNumber() {
+        return this.number;
     }
 }

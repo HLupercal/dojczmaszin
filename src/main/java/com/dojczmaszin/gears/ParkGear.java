@@ -2,9 +2,27 @@ package com.dojczmaszin.gears;
 
 import com.dojczmaszin.thirdparty.WrappedExternalSystems;
 
+import java.util.Objects;
+
 public class ParkGear implements Gear {
 
+    private int number = 0;
+
     private WrappedExternalSystems wrappedExternalSystems;
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ParkGear parkGear = (ParkGear) o;
+        return number == parkGear.number;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number);
+    }
 
     @Override
     public Gear shiftUp() {
@@ -43,7 +61,7 @@ public class ParkGear implements Gear {
 
     @Override
     public int getNumber() {
-        return 0;
+        return this.number;
     }
 
 

@@ -2,6 +2,8 @@ package com.dojczmaszin.gears;
 
 import com.dojczmaszin.thirdparty.WrappedExternalSystems;
 
+import java.util.Objects;
+
 public class KickedDownGear implements Gear {
     //TODO: make final
     private int number;
@@ -10,6 +12,19 @@ public class KickedDownGear implements Gear {
     public KickedDownGear(int number, WrappedExternalSystems wrappedExternalSystems) {
         this.number = number;
         this.wrappedExternalSystems = wrappedExternalSystems;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        KickedDownGear that = (KickedDownGear) o;
+        return number == that.number;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number);
     }
 
     @Override

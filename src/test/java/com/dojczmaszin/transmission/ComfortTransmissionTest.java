@@ -4,10 +4,8 @@ import com.dojczmaszin.gears.DriveGear;
 import com.dojczmaszin.gears.Gear;
 import com.dojczmaszin.gears.NeutralGear;
 import com.dojczmaszin.thirdparty.WrappedExternalSystems;
-import com.dojczmaszin.transmission.Comfort;
-import com.dojczmaszin.transmission.Kickdown;
-import com.dojczmaszin.transmission.SingleKickDown;
-import com.dojczmaszin.transmission.Transmission;
+import com.dojczmaszin.transmission.kickdown.Kickdown;
+import com.dojczmaszin.transmission.kickdown.SingleKickDown;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -23,6 +21,8 @@ class ComfortTransmissionTest {
                 2500d,
                 kickdown,
                 neutralGear);
+
+        getDefaultComfortTransmissionInGear(neutralGear);
 
         WrappedExternalSystems externalSystems = new WrappedExternalSystems();
         //when kickdown and revving

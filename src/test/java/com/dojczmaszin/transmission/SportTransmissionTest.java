@@ -3,10 +3,8 @@ package com.dojczmaszin.transmission;
 import com.dojczmaszin.gears.DriveGear;
 import com.dojczmaszin.gears.Gear;
 import com.dojczmaszin.thirdparty.WrappedExternalSystems;
-import com.dojczmaszin.transmission.DoubleKickdown;
-import com.dojczmaszin.transmission.Kickdown;
-import com.dojczmaszin.transmission.Sport;
-import com.dojczmaszin.transmission.Transmission;
+import com.dojczmaszin.transmission.kickdown.DoubleKickdown;
+import com.dojczmaszin.transmission.kickdown.Kickdown;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

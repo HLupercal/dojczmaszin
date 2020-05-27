@@ -1,4 +1,4 @@
-package com.dojczmaszin.transmission;
+package com.dojczmaszin.transmission.kickdown;
 
 import com.dojczmaszin.gears.Gear;
 

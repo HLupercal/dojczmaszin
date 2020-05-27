@@ -8,13 +8,13 @@ public interface Gear {
 
     Gear handleRpmIncrease(double shiftDownRpmThreshold, double shiftUpRpmThreshold);
 
-    int getNativeGearNumber();
-
-    int getNativeModeNumber();
-
     Gear handleKickDown(double kickDownRpmThreshold, int howManyDownshifts);
 
     Gear handleRpmDecrease(double shiftDownRpmThreshold);
 
     int getNumber();
+
+    int getNativeGearNumber();
+
+    int getNativeModeNumber();
 }
