@@ -20,7 +20,8 @@ public class SportTransmissionTest {
         Transmission sportTransmission = getDefaultSportTransmissionInGear(gear);
 
         //when kicking down hard with low enough rewolutjones per minute
-        Gear resultGear = sportTransmission.handleAcceleration(0.9d, 4000d);
+        externalSystems.increaseRpm(3000d);
+        Gear resultGear = sportTransmission.handleAcceleration(0.9d);
         //then should downshift twice
         assertEquals(new DriveGear(3, externalSystems, 8), resultGear);
 
@@ -35,7 +36,8 @@ public class SportTransmissionTest {
         Transmission sportTransmission = getDefaultSportTransmissionInGear(gear);
 
         //when kicking down light with low enough rewolutjones per minute
-        Gear resultGear = sportTransmission.handleAcceleration(0.6d, 5500d);
+        externalSystems.increaseRpm(4500d);
+        Gear resultGear = sportTransmission.handleAcceleration(0.6d);
         //then should downshift once
         assertEquals(new DriveGear(4, externalSystems, 8), resultGear);
 
@@ -49,7 +51,9 @@ public class SportTransmissionTest {
         Transmission sportTransmission = getDefaultSportTransmissionInGear(gear);
 
         //when kicking down light with low enough rewolutjones per minute
-        Gear resultGear = sportTransmission.handleAcceleration(0.2d, 1501d);
+        //TODO: check the thresholds
+        externalSystems.increaseRpm(501d);
+        Gear resultGear = sportTransmission.handleAcceleration(0.2d);
         //then should downshift once
         assertEquals(new DriveGear(4, externalSystems, 8), resultGear);
     }

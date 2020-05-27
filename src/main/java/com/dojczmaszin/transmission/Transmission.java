@@ -3,9 +3,11 @@ package com.dojczmaszin.transmission;
 import com.dojczmaszin.gears.Gear;
 
 public interface Transmission {
-    Gear handleAcceleration(double pedalDepth, double rpmDelta);
 
-    Gear handleDeacceleration(double rpmDelta);
+    //TODO: should this react on an RPM delta from the outside?
+    Gear handleAcceleration(double pedalDepth);
+
+    Gear handleDeacceleration();
 
     Gear handleManualUpshift();
 

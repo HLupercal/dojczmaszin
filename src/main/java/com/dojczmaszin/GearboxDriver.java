@@ -14,13 +14,13 @@ public class GearboxDriver {
         this.wrappedGearbox = wrappedGearbox;
     }
 
-    public void handleAcceleration(double pedalDepth, double rpmDelta) {
-        Gear gear = transmission.handleAcceleration(pedalDepth, rpmDelta);
+    public void handleAcceleration(double pedalDepth) {
+        Gear gear = transmission.handleAcceleration(pedalDepth);
         wrappedGearbox.setCurrentGear(gear);
     }
 
-    public void handleRpmDecrease(double rpmDelta) {
-        Gear gear = transmission.handleDeacceleration(rpmDelta);
+    public void handleRpmDecrease() {
+        Gear gear = transmission.handleDeacceleration();
         wrappedGearbox.setCurrentGear(gear);
     }
 

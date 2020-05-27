@@ -11,12 +11,12 @@ public class Manual implements Transmission {
     }
 
     @Override
-    public Gear handleAcceleration(double pedalDepth, double rpmDelta) {
+    public Gear handleAcceleration(double pedalDepth) {
         return this.currentGear;
     }
 
     @Override
-    public Gear handleDeacceleration(double rpmDelta) {
+    public Gear handleDeacceleration() {
         return this.currentGear;
     }
 

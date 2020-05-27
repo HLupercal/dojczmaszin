@@ -27,7 +27,8 @@ class ComfortTransmissionTest {
         getDefaultComfortTransmissionInGear(neutralGear);
 
         //when kickdown and revving
-        Gear resultGear = transmission.handleAcceleration(0.6d, 3000d);
+        externalSystems.increaseRpm(2000d);
+        Gear resultGear = transmission.handleAcceleration(0.6d);
 
         //then should do nothing on neutral
         assertEquals(new NeutralGear(externalSystems, 8), resultGear);
@@ -41,7 +42,8 @@ class ComfortTransmissionTest {
 
 
         //when kickdown and above kickdown threshold
-        Gear resultGear = transmission.handleAcceleration(0.6d, 3000d);
+        externalSystems.increaseRpm(2000d);
+        Gear resultGear = transmission.handleAcceleration(0.6d);
 
         //then should kick down one gear
         assertEquals(new DriveGear(1, externalSystems, 8), resultGear);
