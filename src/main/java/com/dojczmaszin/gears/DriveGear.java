@@ -87,14 +87,10 @@ public class DriveGear implements Gear {
 
     @Override
     public Gear handleKickDown(double kickDownThreshold, int howManyDownshifts) {
-        //TODO: make this return KickedDownGear
-        Gear gear = this;
         if (wrappedExternalSystems.getCurrentRpm() < kickDownThreshold) {
-            for (int i = 0; i < howManyDownshifts; i++) {
-                gear = this.nonNeutralShiftDown();
-            }
+            return new KickedDownGear(this.getNumber() - howManyDownshifts, this.wrappedExternalSystems, this.maxNumber);
         }
-        return gear;
+        return new KickedDownGear(this.getNumber(), this.wrappedExternalSystems, this.maxNumber);
     }
 
 

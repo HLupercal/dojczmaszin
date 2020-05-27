@@ -26,7 +26,7 @@ public class Sport implements Transmission {
     @Override
     public Gear handleAcceleration(double pedalDepth, double rpmDelta) {
         Gear gear = kickdown.handle(pedalDepth, currentGear);
-        return currentGear.handleRpmIncrease(this.shiftDownWhenAcceleratingRpmThreshold,
+        return gear.handleRpmIncrease(this.shiftDownWhenAcceleratingRpmThreshold,
                 this.shiftUpWhenAcceleratingRpmThreshold);
     }
 
