@@ -11,9 +11,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SportTransmissionTest {
 
-
     @Test
-    public void shouldDownshiftTwiceOnHardkickDown() {
+    public void should_downshift_twice_on_hardkickdown() {
 
         //given
         WrappedExternalSystems externalSystems = new WrappedExternalSystems();
@@ -27,8 +26,8 @@ public class SportTransmissionTest {
 
     }
 
-
-    public void shouldDownshiftOnceOnLightKickDown() {
+    @Test
+    public void should_downshift_once_on_light_kickdown() {
 
         //given
         WrappedExternalSystems externalSystems = new WrappedExternalSystems();
@@ -38,8 +37,21 @@ public class SportTransmissionTest {
         //when kicking down light with low enough rewolutjones per minute
         Gear resultGear = sportTransmission.handleAcceleration(0.6d, 5500d);
         //then should downshift once
-        assertEquals(new DriveGear(2, externalSystems, 8), resultGear);
+        assertEquals(new DriveGear(4, externalSystems, 8), resultGear);
 
+    }
+
+    @Test
+    public void should_downshift_when_no_kickdown_and_below_downshift_revs_threshold() {
+        //given
+        WrappedExternalSystems externalSystems = new WrappedExternalSystems();
+        DriveGear gear = new DriveGear(5, externalSystems, 8);
+        Transmission sportTransmission = getDefaultSportTransmissionInGear(gear);
+
+        //when kicking down light with low enough rewolutjones per minute
+        Gear resultGear = sportTransmission.handleAcceleration(0.2d, 1501d);
+        //then should downshift once
+        assertEquals(new DriveGear(4, externalSystems, 8), resultGear);
     }
 
     private Transmission getDefaultSportTransmissionInGear(Gear gear) {

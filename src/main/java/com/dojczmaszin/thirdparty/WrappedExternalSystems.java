@@ -13,4 +13,9 @@ public class WrappedExternalSystems {
     public double getCurrentRpm() {
         return this.externalSystems.getCurrentRpm();
     }
+
+    public double increaseRpm(double rpmDelta) {
+        double newRpm = externalSystems.getCurrentRpm() + rpmDelta;
+        this.externalSystems.setCurrentRpm(newRpm);
+    }
 }

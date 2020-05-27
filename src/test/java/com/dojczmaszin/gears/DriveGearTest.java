@@ -7,9 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DriveGearTest {
 
-    @Test
-    void shiftUp() {
-    }
 
     @Test
     void down_shift_from_one_should_result_in_neutral() {
