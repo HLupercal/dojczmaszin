@@ -1,16 +1,14 @@
 package com.dojczmaszin.gears;
 
 import com.dojczmaszin.thirdparty.WrappedExternalSystems;
-import com.dojczmaszin.thirdparty.WrappedGearbox;
 
-public class MaxDriveGear extends DriveGear {
-    private WrappedGearbox wrappedGearbox;
+public class MaxDriveGear implements Gear {
     private WrappedExternalSystems wrappedExternalSystems;
     private int number;
 
-    public MaxDriveGear(int maxGear, WrappedGearbox wrappedGearbox, WrappedExternalSystems wrappedExternalSystems) {
-        super(maxGear, wrappedGearbox, wrappedExternalSystems);
+    public MaxDriveGear(int maxGear, WrappedExternalSystems wrappedExternalSystems) {
         this.number = maxGear;
+        this.wrappedExternalSystems = wrappedExternalSystems;
     }
 
 
@@ -21,7 +19,35 @@ public class MaxDriveGear extends DriveGear {
 
     @Override
     public Gear shiftDown() {
-        return new DriveGear(this.number--, this.wrappedGearbox, this.wrappedExternalSystems);
+        return new DriveGear(this.number--, this.wrappedExternalSystems);
+    }
+
+    @Override
+    public Gear handleRpmIncrease(double shiftDownRpmThreshold, double shiftUpRpmThreshold) {
+        return this;
+    }
+
+    @Override
+    public int getNativeGearNumber() {
+        return 8;
+    }
+
+    @Override
+    public int getNativeModeNumber() {
+        return 1;
+    }
+
+    @Override
+    public Gear handleKickDown(double kickDownRpmThreshold, int howManyDownshifts) {
+        return this;
+    }
+
+    @Override
+    public Gear handleRpmDecrease(double shiftDownRpmThreshold) {
+        if (wrappedExternalSystems.getCurrentRpm() < shiftDownRpmThreshold) {
+            this.shiftDown();
+        }
+        return this;
     }
 
 

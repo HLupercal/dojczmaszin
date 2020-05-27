@@ -14,9 +14,7 @@ public class ReverseGear implements Gear {
 
     @Override
     public Gear handleRpmIncrease(double shiftDownThreshold, double shiftUpThreshold) {
-
-        //TODO: implement
-        return null;
+        return this;
     }
 
     @Override
@@ -27,5 +25,15 @@ public class ReverseGear implements Gear {
     @Override
     public int getNativeModeNumber() {
         return 3;
+    }
+
+    @Override
+    public Gear handleKickDown(double kickDownRpmThreshold, int howManyDownshifts) {
+        return this;
+    }
+
+    @Override
+    public Gear handleRpmDecrease(double shiftDownRpmThreshold) {
+        return this;
     }
 }

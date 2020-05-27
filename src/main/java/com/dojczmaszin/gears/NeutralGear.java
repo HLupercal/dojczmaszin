@@ -1,16 +1,14 @@
 package com.dojczmaszin.gears;
 
 import com.dojczmaszin.thirdparty.WrappedExternalSystems;
-import com.dojczmaszin.thirdparty.WrappedGearbox;
 
 public class NeutralGear implements Gear {
 
-    private WrappedGearbox wrappedGearbox;
     private WrappedExternalSystems wrappedExternalSystems;
 
     @Override
     public Gear shiftUp() {
-        return new DriveGear(1, wrappedGearbox, wrappedExternalSystems);
+        return new DriveGear(1, wrappedExternalSystems);
     }
 
     @Override

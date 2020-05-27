@@ -1,7 +1,6 @@
 package com.dojczmaszin.gears;
 
 import com.dojczmaszin.thirdparty.WrappedExternalSystems;
-import com.dojczmaszin.thirdparty.WrappedGearbox;
 
 import java.util.Objects;
 
