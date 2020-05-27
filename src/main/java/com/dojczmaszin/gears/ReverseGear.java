@@ -36,4 +36,9 @@ public class ReverseGear implements Gear {
     public Gear handleRpmDecrease(double shiftDownRpmThreshold) {
         return this;
     }
+
+    @Override
+    public int getNumber() {
+        return -1;
+    }
 }

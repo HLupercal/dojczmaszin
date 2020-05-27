@@ -51,4 +51,9 @@ public class KickedDownGear implements Gear {
         //downreving doesnt work the same as reving up post kickdown, so just downshift regularly
         return new DriveGear(this.number, this.wrappedExternalSystems).handleRpmDecrease(shiftDownRpmThreshold);
     }
+
+    @Override
+    public int getNumber() {
+        return this.number;
+    }
 }

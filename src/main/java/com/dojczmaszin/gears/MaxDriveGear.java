@@ -50,5 +50,10 @@ public class MaxDriveGear implements Gear {
         return this;
     }
 
+    @Override
+    public int getNumber() {
+        return this.number;
+    }
+
 
 }

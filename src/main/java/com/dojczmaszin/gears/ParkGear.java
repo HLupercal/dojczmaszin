@@ -41,5 +41,10 @@ public class ParkGear implements Gear {
         return this;
     }
 
+    @Override
+    public int getNumber() {
+        return 0;
+    }
+
 
 }
