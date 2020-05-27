@@ -8,6 +8,14 @@ public class DriveGear implements Gear {
     private int number;
     private WrappedExternalSystems wrappedExternalSystems;
 
+    @Override
+    public String toString() {
+        return "DriveGear{" +
+                "number=" + number +
+                ", wrappedExternalSystems=" + wrappedExternalSystems +
+                '}';
+    }
+
     public DriveGear(int number, WrappedExternalSystems wrappedExternalSystems) {
         if (number < 1) {
             throw new UnsupportedOperationException();
@@ -32,7 +40,7 @@ public class DriveGear implements Gear {
 
     @Override
     public Gear shiftUp() {
-        return new DriveGear(this.number++, this.wrappedExternalSystems);
+        return new DriveGear(this.number + 1, this.wrappedExternalSystems);
     }
 
     @Override
@@ -40,8 +48,7 @@ public class DriveGear implements Gear {
         if (this.number == 1) {
             return new NeutralGear();
         }
-        //TODO: fix these
-        return new DriveGear(this.number--, this.wrappedExternalSystems);
+        return new DriveGear(this.number - 1, this.wrappedExternalSystems);
     }
 
     private Gear nonNeutralShiftDown() {
@@ -49,8 +56,7 @@ public class DriveGear implements Gear {
         if (this.number == 1) {
             return this;
         }
-        //TODO: fix these
-        return new DriveGear(this.number--, this.wrappedExternalSystems);
+        return new DriveGear(this.number - 1, this.wrappedExternalSystems);
     }
 
     @Override
