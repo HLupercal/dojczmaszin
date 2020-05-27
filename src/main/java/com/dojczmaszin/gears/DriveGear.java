@@ -34,19 +34,20 @@ public class DriveGear implements Gear {
 
     @Override
     public Gear shiftUp() {
-        return new DriveGear(this.number++, this.wrappedGearbox, this.wrappedExternalSystems);
+        return wrappedGearbox.setCurrentGear(new DriveGear(this.number++, this.wrappedGearbox, this.wrappedExternalSystems));
     }
 
     @Override
     public Gear shiftDown() {
         if (this.number == 1) {
-            return new NeutralGear();
+            return wrappedGearbox.setCurrentGear(new NeutralGear());
         }
-        return new DriveGear(this.number--, this.wrappedGearbox, this.wrappedExternalSystems);
+        return wrappedGearbox.setCurrentGear(new DriveGear(this.number--, this.wrappedGearbox, this.wrappedExternalSystems));
     }
 
-    public Gear nonNeutralShiftDown() {
-        if(this.number == 1) {
+    private Gear nonNeutralShiftDown() {
+        //never go beyond 1
+        if (this.number == 1) {
             return this;
         }
         return new DriveGear(this.number--, this.wrappedGearbox, this.wrappedExternalSystems);
@@ -64,10 +65,11 @@ public class DriveGear implements Gear {
     @Override
     public Gear handleRpmIncrease(double shiftDownThreshold, double shiftUpThreshold) {
         if (wrappedExternalSystems.getCurrentRpm() > shiftUpThreshold) {
-            this.shiftUp();
+            return wrappedGearbox.setCurrentGear(this.shiftUp());
         } else if (wrappedExternalSystems.getCurrentRpm() < shiftDownThreshold) {
-            this.shiftDown();
+            return wrappedGearbox.setCurrentGear(this.shiftDown());
         }
+        //already set
         return this;
     }
 
@@ -76,10 +78,10 @@ public class DriveGear implements Gear {
         Gear gear = this;
         if (wrappedExternalSystems.getCurrentRpm() < kickDownThreshold) {
             for (int i = 0; i < howManyDownshifts; i++) {
-                gear = this.shiftDown();
+                gear = this.nonNeutralShiftDown();
             }
         }
-        return gear;
+        return wrappedGearbox.setCurrentGear(gear);
     }
 
 

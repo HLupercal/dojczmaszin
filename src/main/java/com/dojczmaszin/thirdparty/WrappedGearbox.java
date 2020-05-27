@@ -21,7 +21,7 @@ public class WrappedGearbox {
         this.currentGear = currentGear;
     }
 
-    public void setCurrentGear(Gear currentGear) {
+    public Gear setCurrentGear(Gear currentGear) {
         this.currentGear = currentGear;
         gearbox.setCurrentGear(currentGear.getNativeGearNumber());
         //move this to dedicated resolving function
@@ -29,14 +29,14 @@ public class WrappedGearbox {
                 currentGear.getNativeGearNumber(),
                 currentGear.getNativeModeNumber()});
         //i assume rpm changes automatically when a gear is shifted
-
+        return currentGear;
     }
 
     public int getMaxGear() {
         return this.gearbox.getMaxDrive();
     }
 
-    private Gear getCurrentGear() {
+    public Gear getCurrentGear() {
         return this.currentGear;
     }
 }

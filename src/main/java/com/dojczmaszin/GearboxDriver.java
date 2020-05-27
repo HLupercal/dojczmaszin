@@ -1,10 +1,11 @@
 package com.dojczmaszin;
 
 import com.dojczmaszin.thirdparty.WrappedGearbox;
+import com.dojczmaszin.transmission.Transmission;
 
 public class GearboxDriver {
 
-    WrappedGearbox gearbox;
+    private Transmission transmission;
 
 
 
@@ -14,6 +15,14 @@ public class GearboxDriver {
     }
 
     public void handleRpmDecrease() {
+
+    }
+
+    public void handleManualUpshift() {
+
+    }
+
+    public void handleManualDownshift() {
 
     }
 
