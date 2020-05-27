@@ -40,6 +40,7 @@ public class DriveGear implements Gear {
         if (this.number == 1) {
             return new NeutralGear();
         }
+        //TODO: fix these
         return new DriveGear(this.number--, this.wrappedExternalSystems);
     }
 
@@ -48,6 +49,7 @@ public class DriveGear implements Gear {
         if (this.number == 1) {
             return this;
         }
+        //TODO: fix these
         return new DriveGear(this.number--, this.wrappedExternalSystems);
     }
 
@@ -72,6 +74,7 @@ public class DriveGear implements Gear {
 
     @Override
     public Gear handleKickDown(double kickDownThreshold, int howManyDownshifts) {
+        //TODO: make this return KickedDownGear
         Gear gear = this;
         if (wrappedExternalSystems.getCurrentRpm() < kickDownThreshold) {
             for (int i = 0; i < howManyDownshifts; i++) {
