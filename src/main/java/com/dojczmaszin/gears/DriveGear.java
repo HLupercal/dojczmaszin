@@ -7,15 +7,13 @@ import java.util.Objects;
 
 public class DriveGear implements Gear {
     private int number;
-    private WrappedGearbox wrappedGearbox;
     private WrappedExternalSystems wrappedExternalSystems;
 
-    public DriveGear(int number, WrappedGearbox wrappedGearbox, WrappedExternalSystems wrappedExternalSystems) {
+    public DriveGear(int number, WrappedExternalSystems wrappedExternalSystems) {
         if (number < 1) {
             throw new UnsupportedOperationException();
         }
         this.number = number;
-        this.wrappedGearbox = wrappedGearbox;
         this.wrappedExternalSystems = wrappedExternalSystems;
     }
 
@@ -34,15 +32,15 @@ public class DriveGear implements Gear {
 
     @Override
     public Gear shiftUp() {
-        return wrappedGearbox.setCurrentGear(new DriveGear(this.number++, this.wrappedGearbox, this.wrappedExternalSystems));
+        return new DriveGear(this.number++, this.wrappedExternalSystems);
     }
 
     @Override
     public Gear shiftDown() {
         if (this.number == 1) {
-            return wrappedGearbox.setCurrentGear(new NeutralGear());
+            return new NeutralGear();
         }
-        return wrappedGearbox.setCurrentGear(new DriveGear(this.number--, this.wrappedGearbox, this.wrappedExternalSystems));
+        return new DriveGear(this.number--, this.wrappedExternalSystems);
     }
 
     private Gear nonNeutralShiftDown() {
@@ -50,7 +48,7 @@ public class DriveGear implements Gear {
         if (this.number == 1) {
             return this;
         }
-        return new DriveGear(this.number--, this.wrappedGearbox, this.wrappedExternalSystems);
+        return new DriveGear(this.number--, this.wrappedExternalSystems);
     }
 
     @Override
@@ -65,11 +63,10 @@ public class DriveGear implements Gear {
     @Override
     public Gear handleRpmIncrease(double shiftDownThreshold, double shiftUpThreshold) {
         if (wrappedExternalSystems.getCurrentRpm() > shiftUpThreshold) {
-            return wrappedGearbox.setCurrentGear(this.shiftUp());
+            return this.shiftUp();
         } else if (wrappedExternalSystems.getCurrentRpm() < shiftDownThreshold) {
-            return wrappedGearbox.setCurrentGear(this.shiftDown());
+            return this.shiftDown();
         }
-        //already set
         return this;
     }
 
@@ -81,7 +78,7 @@ public class DriveGear implements Gear {
                 gear = this.nonNeutralShiftDown();
             }
         }
-        return wrappedGearbox.setCurrentGear(gear);
+        return gear;
     }
 
 
