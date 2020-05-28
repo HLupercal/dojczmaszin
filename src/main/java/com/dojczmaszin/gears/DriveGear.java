@@ -19,7 +19,7 @@ public class DriveGear implements Gear {
     }
 
     public DriveGear(int number, WrappedExternalSystems wrappedExternalSystems, int maxNumber) {
-        if (number < 1 || number > maxNumber) {
+        if (number < 1 || number >= maxNumber) {
             throw new UnsupportedOperationException();
         }
         this.number = number;

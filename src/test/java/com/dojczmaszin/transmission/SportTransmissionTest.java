@@ -57,11 +57,40 @@ public class SportTransmissionTest {
         assertEquals(new DriveGear(4, externalSystems, 8), resultGear);
     }
 
+    @Test
+    public void should_downshift_when_deaccelerating_below_rpm_threshold() {
+        //given
+        WrappedExternalSystems externalSystems = new WrappedExternalSystems();
+        DriveGear gear = new DriveGear(5, externalSystems, 8);
+        Transmission sportTransmission = getDefaultSportTransmissionInGear(gear);
+
+        //when kicking down light with low enough rewolutjones per minute
+        externalSystems.setCurrentRpm(2999d);
+        Gear resultGear = sportTransmission.handleDeacceleration();
+        //then should downshift once
+        assertEquals(new DriveGear(4, externalSystems, 8), resultGear);
+    }
+
+    @Test
+    public void should_downshift_when_deaccelerating_above_rpm_threshold() {
+        //given
+        WrappedExternalSystems externalSystems = new WrappedExternalSystems();
+        DriveGear gear = new DriveGear(5, externalSystems, 8);
+        Transmission sportTransmission = getDefaultSportTransmissionInGear(gear);
+
+        //when kicking down light with low enough rewolutjones per minute
+        externalSystems.setCurrentRpm(3001d);
+        Gear resultGear = sportTransmission.handleDeacceleration();
+        //then should downshift once
+        assertEquals(new DriveGear(5, externalSystems, 8), resultGear);
+    }
+
     private Transmission getDefaultSportTransmissionInGear(Gear gear) {
         Kickdown kickdown = new DoubleKickdown(0.5d, 5000d,
                 0.7d, 3000d);
         Transmission transmission = new Sport(1500d,
                 2500d,
+                3000d,
                 kickdown,
                 gear);
         return transmission;

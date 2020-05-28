@@ -13,11 +13,12 @@ public class Sport implements Transmission {
 
     public Sport(double shiftDownWhenAcceleratingRpmThreshold,
                  double shiftUpWhenAcceleratingRpmThreshold,
+                 double shiftDownWhenDeacceleratingRpmThreshold,
                  Kickdown kickdown,
                  Gear currentGear) {
         this.shiftDownWhenAcceleratingRpmThreshold = shiftDownWhenAcceleratingRpmThreshold;
         this.shiftUpWhenAcceleratingRpmThreshold = shiftUpWhenAcceleratingRpmThreshold;
-        this.shiftDownWhenDeacceleratingRpmThreshold = shiftDownWhenAcceleratingRpmThreshold;
+        this.shiftDownWhenDeacceleratingRpmThreshold = shiftDownWhenDeacceleratingRpmThreshold;
         this.kickdown = kickdown;
         this.currentGear = currentGear;
 

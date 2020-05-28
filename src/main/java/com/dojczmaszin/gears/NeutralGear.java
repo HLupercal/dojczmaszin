@@ -15,6 +15,16 @@ public class NeutralGear implements Gear {
         this.maxNumber = maxNumber;
     }
 
+
+    @Override
+    public String toString() {
+        return "NeutralGear{" +
+                "number=" + number +
+                ", wrappedExternalSystems=" + wrappedExternalSystems +
+                ", maxNumber=" + maxNumber +
+                '}';
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -35,7 +45,8 @@ public class NeutralGear implements Gear {
 
     @Override
     public Gear shiftDown() {
-        return new ReverseGear();
+        //I think this shouldn't result in Reverse
+        return this;
     }
 
     @Override

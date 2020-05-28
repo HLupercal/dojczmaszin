@@ -112,10 +112,10 @@ class DriveGearTest {
     }
 
     @Test()
-    void should_throw_error_when_gear_initilized_with_higher_than_max() {
+    void should_throw_error_when_gear_initilized_with_max_or_higher() {
         WrappedExternalSystems wrappedExternalSystems = new WrappedExternalSystems();
         assertThrows(UnsupportedOperationException.class, () -> {
-            new DriveGear(9, wrappedExternalSystems, 8);
+            new DriveGear(8, wrappedExternalSystems, 8);
         });
     }
 

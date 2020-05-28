@@ -49,6 +49,21 @@ class ComfortTransmissionTest {
         assertEquals(new DriveGear(1, externalSystems, 8), resultGear);
     }
 
+    @Test
+    void should_not_kickdown_one_gear_when_below_depth_threshold() {
+        WrappedExternalSystems externalSystems = new WrappedExternalSystems();
+        Gear driveGear = new DriveGear(2, externalSystems, 8);
+        Transmission transmission = getDefaultComfortTransmissionInGear(driveGear);
+
+
+        //when kickdown and below kickdown threshold
+        externalSystems.setCurrentRpm(1500d);
+        Gear resultGear = transmission.handleAcceleration(0.4d);
+
+        //then should kick down one gear
+        assertEquals(new DriveGear(2, externalSystems, 8), resultGear);
+    }
+
     private Transmission getDefaultComfortTransmissionInGear(Gear gear) {
         Kickdown kickdown = new SingleKickDown(0.5d, 4000d);
         Transmission transmission = new Comfort(1000d,
