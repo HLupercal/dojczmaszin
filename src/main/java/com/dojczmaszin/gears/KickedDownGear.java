@@ -32,13 +32,13 @@ public class KickedDownGear implements Gear {
     @Override
     public Gear shiftUp() {
         //it's been kicked down so it must be able to go up
-        return new DriveGear(this.number++, this.wrappedExternalSystems, this.maxNumber);
+        return new DriveGear(this.number + 1, this.wrappedExternalSystems, this.maxNumber);
     }
 
     @Override
     public Gear shiftDown() {
         //make sure this is correct
-        return new DriveGear(this.number--, this.wrappedExternalSystems, this.maxNumber);
+        return new DriveGear(this.number - 1, this.wrappedExternalSystems, this.maxNumber);
     }
 
     @Override

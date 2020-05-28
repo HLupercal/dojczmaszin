@@ -58,18 +58,18 @@ public class DriveGear implements Gear {
         return new DriveGear(this.number - 1, this.wrappedExternalSystems, this.maxNumber);
     }
 
-    private Gear nonNeutralShiftDown() {
+    private Gear nonNeutralShiftDown(int numberOfDownshifts) {
         //never go beyond 1
-        if (this.number == 1) {
-            return this;
+        if (this.number - numberOfDownshifts < 1) {
+            return new DriveGear(1, this.wrappedExternalSystems, this.maxNumber);
         }
-        return new DriveGear(this.number - 1, this.wrappedExternalSystems, this.maxNumber);
+        return new DriveGear(this.number - numberOfDownshifts, this.wrappedExternalSystems, this.maxNumber);
     }
 
     @Override
     public Gear handleRpmDecrease(double shiftDownRpmThreshold) {
         if (wrappedExternalSystems.getCurrentRpm() < shiftDownRpmThreshold) {
-            this.shiftDown();
+            return this.shiftDown();
         }
         return this;
     }
@@ -87,8 +87,10 @@ public class DriveGear implements Gear {
 
     @Override
     public Gear handleKickDown(double kickDownThreshold, int howManyDownshifts) {
+        Gear result = this;
         if (wrappedExternalSystems.getCurrentRpm() > kickDownThreshold) {
-            return new KickedDownGear(this.getNumber() - howManyDownshifts, this.wrappedExternalSystems, this.maxNumber);
+            result = this.nonNeutralShiftDown(howManyDownshifts);
+            return new KickedDownGear(result.getNumber(), this.wrappedExternalSystems, this.maxNumber);
         }
 //        return new KickedDownGear(this.getNumber(), this.wrappedExternalSystems, this.maxNumber);
         return this;
