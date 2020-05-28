@@ -52,7 +52,7 @@ public class Sport implements Transmission, AggressiveTransmission {
     @Override
     public void overrideDefaultTransmissionParams(AggroMode aggroMode) {
 
-        //or maybe return a new transmission instsance?
+        //or maybe return a new transmission instance?
         this.shiftDownWhenAcceleratingRpmThreshold = aggroMode
                 .getDownshiftAccelRpmThreshold(this.shiftDownWhenAcceleratingRpmThreshold);
         this.shiftUpWhenAcceleratingRpmThreshold = aggroMode
