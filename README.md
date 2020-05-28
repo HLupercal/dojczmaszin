@@ -2,7 +2,7 @@
 - regular gear changes
 - comfort, sport, manual mode
 - kickdowns
-- aggressive mode overrides, with the exemption of modifying the downshift behavior
+- aggressive mode overrides
 
-plus a bunch of unit tests ()
+plus a bunch of unit tests (they should be split way more - in general the sport transmission test works kind of like a set of e2e test scenarios which is sub optimal, but i'll never get this done if i don't stop somewhere)
 

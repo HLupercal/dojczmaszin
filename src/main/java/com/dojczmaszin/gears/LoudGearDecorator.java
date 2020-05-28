@@ -32,7 +32,7 @@ public class LoudGearDecorator extends GearDecorator {
 
     @Override
     public Gear handleRpmIncrease(double shiftDownRpmThreshold, double shiftUpRpmThreshold) {
-        //this wont work as it calls super and downshift is handled there
+        //clunky AF, need to inject behavior directly somehow
         Gear result = super.handleRpmIncrease(shiftDownRpmThreshold, shiftUpRpmThreshold);
         if (result.getNumber() < super.getNumber()) {
             System.out.println("I'm way louder than metallica, even before before they got old");
