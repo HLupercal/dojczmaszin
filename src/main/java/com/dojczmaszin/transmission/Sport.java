@@ -59,5 +59,6 @@ public class Sport implements Transmission, AggressiveTransmission {
                 .getUpshiftAccelRpmThreshold(this.shiftUpWhenAcceleratingRpmThreshold);
         this.shiftDownWhenDeacceleratingRpmThreshold = aggroMode
                 .getDownshiftDeaccelRpmThreshold(this.shiftDownWhenDeacceleratingRpmThreshold);
+        this.currentGear = aggroMode.getAngryGear(currentGear);
     }
 }

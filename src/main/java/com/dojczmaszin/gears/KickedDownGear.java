@@ -37,7 +37,6 @@ public class KickedDownGear implements Gear {
 
     @Override
     public Gear shiftDown() {
-        //make sure this is correct
         return new DriveGear(this.number - 1, this.wrappedExternalSystems, this.maxNumber);
     }
 
