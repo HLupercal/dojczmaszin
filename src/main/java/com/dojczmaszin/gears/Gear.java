@@ -14,7 +14,9 @@ public interface Gear {
 
     int getNumber();
 
+    //naive mapping
     int getNativeGearNumber();
 
+    //naive mapping
     int getNativeModeNumber();
 }

@@ -11,6 +11,9 @@ import com.dojczmaszin.transmission.kickdown.DoubleKickdown;
 import com.dojczmaszin.transmission.kickdown.Kickdown;
 import org.junit.jupiter.api.Test;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SportTransmissionTest {
@@ -185,6 +188,9 @@ public class SportTransmissionTest {
         WrappedExternalSystems externalSystems = new WrappedExternalSystems();
         DriveGear gear = new DriveGear(5, externalSystems, 8);
         Sport sportTransmission = getDefaultSportTransmissionInGear(gear);
+        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+        PrintStream originalOut = System.out;
+        System.setOut(new PrintStream(outContent));
 
         //when above rpm
         AggroMode aggroMode = new ObiecywalismySobieTenFilmOdLatAngry();
@@ -193,6 +199,9 @@ public class SportTransmissionTest {
         Gear resultGear = sportTransmission.handleAcceleration(0.4d);
         //then should downshift once
         assertEquals(new LoudGearDecorator(new DriveGear(4, externalSystems, 8)), resultGear);
+        //and be kinda loud
+        assertEquals("I'm way louder than metallica, even before before they got old\n", outContent.toString());
+
     }
 
     private Sport getDefaultSportTransmissionInGear(Gear gear) {
