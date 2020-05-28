@@ -1,9 +1,11 @@
 package com.dojczmaszin.transmission;
 
 import com.dojczmaszin.gears.Gear;
+import com.dojczmaszin.transmission.aggro.Aggressive;
+import com.dojczmaszin.transmission.aggro.AggroMode;
 import com.dojczmaszin.transmission.kickdown.Kickdown;
 
-public class Sport implements Transmission {
+public class Sport implements Transmission, Aggressive {
 
     private double shiftDownWhenAcceleratingRpmThreshold;
     private double shiftUpWhenAcceleratingRpmThreshold;
@@ -44,5 +46,16 @@ public class Sport implements Transmission {
     @Override
     public Gear handleManualDownshift() {
         return currentGear.shiftDown();
+    }
+
+
+    @Override
+    public void overrideDefaultTransmissionParams(AggroMode aggroMode) {
+        this.shiftDownWhenAcceleratingRpmThreshold = aggroMode
+                .getDownshiftAccelRpmThreshold(this.shiftDownWhenAcceleratingRpmThreshold);
+        this.shiftUpWhenAcceleratingRpmThreshold = aggroMode
+                .getUpshiftAccelRpmThreshold(this.shiftDownWhenAcceleratingRpmThreshold);
+        this.shiftDownWhenDeacceleratingRpmThreshold = aggroMode
+                .getUpshiftDeaccelRpmThreshold(this.shiftDownWhenAcceleratingRpmThreshold);
     }
 }
