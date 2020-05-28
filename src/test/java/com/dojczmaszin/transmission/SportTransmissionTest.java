@@ -64,7 +64,7 @@ public class SportTransmissionTest {
         DriveGear gear = new DriveGear(5, externalSystems, 8);
         Transmission sportTransmission = getDefaultSportTransmissionInGear(gear);
 
-        //when kicking down light with low enough rewolutjones per minute
+        //when below rpm
         externalSystems.setCurrentRpm(2999d);
         Gear resultGear = sportTransmission.handleDeacceleration();
         //then should downshift once
@@ -78,11 +78,36 @@ public class SportTransmissionTest {
         DriveGear gear = new DriveGear(5, externalSystems, 8);
         Transmission sportTransmission = getDefaultSportTransmissionInGear(gear);
 
-        //when kicking down light with low enough rewolutjones per minute
+        //when above rpm
         externalSystems.setCurrentRpm(3001d);
         Gear resultGear = sportTransmission.handleDeacceleration();
         //then should downshift once
         assertEquals(new DriveGear(5, externalSystems, 8), resultGear);
+    }
+
+    @Test
+    public void should_manually_upshift() {
+        //given
+        WrappedExternalSystems externalSystems = new WrappedExternalSystems();
+        DriveGear gear = new DriveGear(5, externalSystems, 8);
+        Transmission sportTransmission = getDefaultSportTransmissionInGear(gear);
+
+        Gear resultGear = sportTransmission.handleManualUpshift();
+        //then should downshift once
+        assertEquals(new DriveGear(6, externalSystems, 8), resultGear);
+    }
+
+
+    @Test
+    public void should_manually_downshift() {
+        //given
+        WrappedExternalSystems externalSystems = new WrappedExternalSystems();
+        DriveGear gear = new DriveGear(5, externalSystems, 8);
+        Transmission sportTransmission = getDefaultSportTransmissionInGear(gear);
+
+        Gear resultGear = sportTransmission.handleManualDownshift();
+        //then should downshift once
+        assertEquals(new DriveGear(4, externalSystems, 8), resultGear);
     }
 
     private Transmission getDefaultSportTransmissionInGear(Gear gear) {

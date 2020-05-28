@@ -44,7 +44,7 @@ public class ManualTransmissionTest {
     }
 
     @Test
-    void manual_downshift_one_should_got_to_neutral() {
+    void manual_downshift_one_should_go_to_neutral() {
         WrappedExternalSystems externalSystems = new WrappedExternalSystems();
         Gear gear = new DriveGear(1, externalSystems, 8);
         Transmission transmission = getDefaultManualTransmissionInGear(gear);
