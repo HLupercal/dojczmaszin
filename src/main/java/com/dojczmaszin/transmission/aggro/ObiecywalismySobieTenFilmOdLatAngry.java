@@ -1,5 +1,8 @@
 package com.dojczmaszin.transmission.aggro;
 
+import com.dojczmaszin.gears.Gear;
+import com.dojczmaszin.gears.LoudGearDecorator;
+
 public class ObiecywalismySobieTenFilmOdLatAngry implements AggroMode {
     @Override
     public double getDownshiftAccelRpmThreshold(double rpm) {
@@ -14,5 +17,10 @@ public class ObiecywalismySobieTenFilmOdLatAngry implements AggroMode {
     @Override
     public double getDownshiftDeaccelRpmThreshold(double rpm) {
         return rpm + rpm/2;
+    }
+
+    @Override
+    public Gear getAngryGear(Gear gear) {
+        return new LoudGearDecorator(gear);
     }
 }

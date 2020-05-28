@@ -2,8 +2,10 @@ package com.dojczmaszin.transmission;
 
 import com.dojczmaszin.gears.DriveGear;
 import com.dojczmaszin.gears.Gear;
+import com.dojczmaszin.gears.LoudGearDecorator;
 import com.dojczmaszin.thirdparty.WrappedExternalSystems;
 import com.dojczmaszin.transmission.aggro.AggroMode;
+import com.dojczmaszin.transmission.aggro.ObiecywalismySobieTenFilmOdLatAngry;
 import com.dojczmaszin.transmission.aggro.PoUjMiLasIrritated;
 import com.dojczmaszin.transmission.kickdown.DoubleKickdown;
 import com.dojczmaszin.transmission.kickdown.Kickdown;
@@ -175,6 +177,22 @@ public class SportTransmissionTest {
         Gear resultGear = sportTransmission.handleDeacceleration();
         //then should downshift once
         assertEquals(new DriveGear(4, externalSystems, 8), resultGear);
+    }
+
+    @Test
+    public void should_be_obnoxiously_loud_when_downshifting_on_second_aggro_mode() {
+        //given
+        WrappedExternalSystems externalSystems = new WrappedExternalSystems();
+        DriveGear gear = new DriveGear(5, externalSystems, 8);
+        Sport sportTransmission = getDefaultSportTransmissionInGear(gear);
+
+        //when above rpm
+        AggroMode aggroMode = new ObiecywalismySobieTenFilmOdLatAngry();
+        sportTransmission.overrideDefaultTransmissionParams(aggroMode);
+        externalSystems.setCurrentRpm(1800d);
+        Gear resultGear = sportTransmission.handleAcceleration(0.4d);
+        //then should downshift once
+        assertEquals(new LoudGearDecorator(new DriveGear(4, externalSystems, 8)), resultGear);
     }
 
     private Sport getDefaultSportTransmissionInGear(Gear gear) {
