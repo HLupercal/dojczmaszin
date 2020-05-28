@@ -59,7 +59,7 @@ public class DriveGear implements Gear {
     }
 
     private Gear nonNeutralShiftDown(int numberOfDownshifts) {
-        //never go beyond 1
+        //never go below 1
         if (this.number - numberOfDownshifts < 1) {
             return new DriveGear(1, this.wrappedExternalSystems, this.maxNumber);
         }
@@ -89,11 +89,12 @@ public class DriveGear implements Gear {
     public Gear handleKickDown(double kickDownThreshold, int howManyDownshifts) {
         Gear result = this;
         if (wrappedExternalSystems.getCurrentRpm() > kickDownThreshold) {
+            //i guess kickingdown to neutral is dumb
             result = this.nonNeutralShiftDown(howManyDownshifts);
             return new KickedDownGear(result.getNumber(), this.wrappedExternalSystems, this.maxNumber);
         }
 //        return new KickedDownGear(this.getNumber(), this.wrappedExternalSystems, this.maxNumber);
-        return this;
+        return result;
     }
 
 

@@ -1,11 +1,11 @@
 package com.dojczmaszin.transmission;
 
 import com.dojczmaszin.gears.Gear;
-import com.dojczmaszin.transmission.aggro.Aggressive;
+import com.dojczmaszin.transmission.aggro.AggressiveTransmission;
 import com.dojczmaszin.transmission.aggro.AggroMode;
 import com.dojczmaszin.transmission.kickdown.Kickdown;
 
-public class Sport implements Transmission, Aggressive {
+public class Sport implements Transmission, AggressiveTransmission {
 
     private double shiftDownWhenAcceleratingRpmThreshold;
     private double shiftUpWhenAcceleratingRpmThreshold;

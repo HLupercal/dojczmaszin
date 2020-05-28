@@ -1,5 +1,5 @@
 package com.dojczmaszin.transmission.aggro;
 
-public interface Aggressive {
+public interface AggressiveTransmission {
     void overrideDefaultTransmissionParams(AggroMode aggroMode);
 }
