@@ -19,10 +19,7 @@ class ComfortTransmissionTest {
         WrappedExternalSystems externalSystems = new WrappedExternalSystems();
         Gear neutralGear = new NeutralGear(externalSystems, 8);
         Kickdown kickdown = new SingleKickDown(0.5d, 5000d);
-        Transmission transmission = new Comfort(1000d,
-                2500d,
-                kickdown,
-                neutralGear);
+        Transmission transmission = getDefaultComfortTransmissionInGear(neutralGear);
 
         getDefaultComfortTransmissionInGear(neutralGear);
 
@@ -64,10 +61,26 @@ class ComfortTransmissionTest {
         assertEquals(new DriveGear(2, externalSystems, 8), resultGear);
     }
 
+    @Test
+    void should_down_shift_one_gear_when_below_rpm_threshold() {
+        WrappedExternalSystems externalSystems = new WrappedExternalSystems();
+        Gear driveGear = new DriveGear(2, externalSystems, 8);
+        Transmission transmission = getDefaultComfortTransmissionInGear(driveGear);
+
+
+        //when rpm below threshold
+        externalSystems.setCurrentRpm(1999d);
+        Gear resultGear = transmission.handleDeacceleration();
+
+        //then should kick down one gear
+        assertEquals(new DriveGear(1, externalSystems, 8), resultGear);
+    }
+
     private Transmission getDefaultComfortTransmissionInGear(Gear gear) {
         Kickdown kickdown = new SingleKickDown(0.5d, 4000d);
         Transmission transmission = new Comfort(1000d,
                 2500d,
+                2000d,
                 kickdown,
                 gear);
         return transmission;
