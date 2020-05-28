@@ -6,7 +6,7 @@ import com.dojczmaszin.transmission.Transmission;
 public class PoUjMiLasIrritated implements AggroMode {
     @Override
     public double getDownshiftAccelRpmThreshold(double rpm) {
-        return rpm - rpm/3;
+        return rpm + rpm/3;
     }
 
     @Override
@@ -15,7 +15,7 @@ public class PoUjMiLasIrritated implements AggroMode {
     }
 
     @Override
-    public double getUpshiftDeaccelRpmThreshold(double rpm) {
+    public double getDownshiftDeaccelRpmThreshold(double rpm) {
         return rpm + rpm/3;
     }
 }

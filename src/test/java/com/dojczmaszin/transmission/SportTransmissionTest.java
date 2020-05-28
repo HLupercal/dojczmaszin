@@ -3,6 +3,8 @@ package com.dojczmaszin.transmission;
 import com.dojczmaszin.gears.DriveGear;
 import com.dojczmaszin.gears.Gear;
 import com.dojczmaszin.thirdparty.WrappedExternalSystems;
+import com.dojczmaszin.transmission.aggro.AggroMode;
+import com.dojczmaszin.transmission.aggro.PoUjMiLasIrritated;
 import com.dojczmaszin.transmission.kickdown.DoubleKickdown;
 import com.dojczmaszin.transmission.kickdown.Kickdown;
 import org.junit.jupiter.api.Test;
@@ -110,10 +112,75 @@ public class SportTransmissionTest {
         assertEquals(new DriveGear(4, externalSystems, 8), resultGear);
     }
 
-    private Transmission getDefaultSportTransmissionInGear(Gear gear) {
+
+    @Test
+    public void should_not_downshift_when_rpm_in_range() {
+        //given
+        WrappedExternalSystems externalSystems = new WrappedExternalSystems();
+        DriveGear gear = new DriveGear(5, externalSystems, 8);
+        Sport sportTransmission = getDefaultSportTransmissionInGear(gear);
+
+        //when above rpm
+        AggroMode aggroMode = new PoUjMiLasIrritated();
+        sportTransmission.overrideDefaultTransmissionParams(aggroMode);
+        externalSystems.setCurrentRpm(1800d);
+        Gear resultGear = sportTransmission.handleAcceleration(0.4d);
+        //then should downshift once
+        assertEquals(new DriveGear(4, externalSystems, 8), resultGear);
+    }
+
+    @Test
+    public void should_downshift_sooner_when_accelerating_on_first_aggressive_mode_override() {
+        //given
+        WrappedExternalSystems externalSystems = new WrappedExternalSystems();
+        DriveGear gear = new DriveGear(5, externalSystems, 8);
+        Sport sportTransmission = getDefaultSportTransmissionInGear(gear);
+
+        //when above rpm
+        AggroMode aggroMode = new PoUjMiLasIrritated();
+        sportTransmission.overrideDefaultTransmissionParams(aggroMode);
+        externalSystems.setCurrentRpm(1800d);
+        Gear resultGear = sportTransmission.handleAcceleration(0.4d);
+        //then should downshift once
+        assertEquals(new DriveGear(4, externalSystems, 8), resultGear);
+    }
+
+    @Test
+    public void should_upshift_later_when_accelerating_on_first_aggressive_mode_override() {
+        //given
+        WrappedExternalSystems externalSystems = new WrappedExternalSystems();
+        DriveGear gear = new DriveGear(5, externalSystems, 8);
+        Sport sportTransmission = getDefaultSportTransmissionInGear(gear);
+
+        //when above rpm
+        AggroMode aggroMode = new PoUjMiLasIrritated();
+        sportTransmission.overrideDefaultTransmissionParams(aggroMode);
+        externalSystems.setCurrentRpm(3000d);
+        Gear resultGear = sportTransmission.handleAcceleration(0.4d);
+        //then should downshift once
+        assertEquals(new DriveGear(5, externalSystems, 8), resultGear);
+    }
+
+    @Test
+    public void should_downshift_faster_when_deaccelerating_on_first_aggressive_mode_override() {
+        //given
+        WrappedExternalSystems externalSystems = new WrappedExternalSystems();
+        DriveGear gear = new DriveGear(5, externalSystems, 8);
+        Sport sportTransmission = getDefaultSportTransmissionInGear(gear);
+
+        //when above rpm
+        AggroMode aggroMode = new PoUjMiLasIrritated();
+        sportTransmission.overrideDefaultTransmissionParams(aggroMode);
+        externalSystems.setCurrentRpm(3999d);
+        Gear resultGear = sportTransmission.handleDeacceleration();
+        //then should downshift once
+        assertEquals(new DriveGear(4, externalSystems, 8), resultGear);
+    }
+
+    private Sport getDefaultSportTransmissionInGear(Gear gear) {
         Kickdown kickdown = new DoubleKickdown(0.5d, 5000d,
                 0.7d, 3000d);
-        Transmission transmission = new Sport(1500d,
+        Sport transmission = new Sport(1500d,
                 2500d,
                 3000d,
                 kickdown,

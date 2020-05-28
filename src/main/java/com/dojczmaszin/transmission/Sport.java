@@ -51,11 +51,13 @@ public class Sport implements Transmission, Aggressive {
 
     @Override
     public void overrideDefaultTransmissionParams(AggroMode aggroMode) {
+
+        //or maybe return a new transmission instsance?
         this.shiftDownWhenAcceleratingRpmThreshold = aggroMode
                 .getDownshiftAccelRpmThreshold(this.shiftDownWhenAcceleratingRpmThreshold);
         this.shiftUpWhenAcceleratingRpmThreshold = aggroMode
-                .getUpshiftAccelRpmThreshold(this.shiftDownWhenAcceleratingRpmThreshold);
+                .getUpshiftAccelRpmThreshold(this.shiftUpWhenAcceleratingRpmThreshold);
         this.shiftDownWhenDeacceleratingRpmThreshold = aggroMode
-                .getUpshiftDeaccelRpmThreshold(this.shiftDownWhenAcceleratingRpmThreshold);
+                .getDownshiftDeaccelRpmThreshold(this.shiftDownWhenDeacceleratingRpmThreshold);
     }
 }

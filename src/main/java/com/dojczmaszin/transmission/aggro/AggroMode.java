@@ -6,5 +6,5 @@ public interface AggroMode {
 
     double getUpshiftAccelRpmThreshold(double rpm);
 
-    double getUpshiftDeaccelRpmThreshold(double rpm);
+    double getDownshiftDeaccelRpmThreshold(double rpm);
 }

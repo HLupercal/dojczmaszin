@@ -3,7 +3,7 @@ package com.dojczmaszin.transmission.aggro;
 public class ObiecywalismySobieTenFilmOdLatAngry implements AggroMode {
     @Override
     public double getDownshiftAccelRpmThreshold(double rpm) {
-        return rpm - rpm/2;
+        return rpm + rpm/2;
     }
 
     @Override
@@ -12,7 +12,7 @@ public class ObiecywalismySobieTenFilmOdLatAngry implements AggroMode {
     }
 
     @Override
-    public double getUpshiftDeaccelRpmThreshold(double rpm) {
+    public double getDownshiftDeaccelRpmThreshold(double rpm) {
         return rpm + rpm/2;
     }
 }
