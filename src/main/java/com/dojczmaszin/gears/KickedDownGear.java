@@ -5,7 +5,6 @@ import com.dojczmaszin.thirdparty.WrappedExternalSystems;
 import java.util.Objects;
 
 public class KickedDownGear implements Gear {
-    //TODO: make final
     private int number;
     private WrappedExternalSystems wrappedExternalSystems;
     private int maxNumber;
@@ -47,6 +46,12 @@ public class KickedDownGear implements Gear {
     }
 
     @Override
+    public Gear handleRpmDecrease(double shiftDownRpmThreshold) {
+        //downreving doesnt work the same as reving up post kickdown, so just downshift regularly
+        return new DriveGear(this.number, this.wrappedExternalSystems, this.maxNumber).handleRpmDecrease(shiftDownRpmThreshold);
+    }
+
+    @Override
     public Gear handleKickDown(double kickDownRpmThreshold, int howManyDownshifts) {
         //a kicked down gear cant handle another kickdown (although maybe it should?)
         return new DriveGear(this.number, this.wrappedExternalSystems, this.maxNumber);
@@ -62,11 +67,6 @@ public class KickedDownGear implements Gear {
         return new DriveGear(this.number, this.wrappedExternalSystems, this.maxNumber).getNativeModeNumber();
     }
 
-    @Override
-    public Gear handleRpmDecrease(double shiftDownRpmThreshold) {
-        //downreving doesnt work the same as reving up post kickdown, so just downshift regularly
-        return new DriveGear(this.number, this.wrappedExternalSystems, this.maxNumber).handleRpmDecrease(shiftDownRpmThreshold);
-    }
 
     @Override
     public int getNumber() {
