@@ -3,6 +3,8 @@ package com.dojczmaszin.transmission.aggro;
 import com.dojczmaszin.gears.Gear;
 import com.dojczmaszin.gears.LoudGearDecorator;
 
+
+//regular mode
 public class MalgorzataCalm implements AggroMode {
     @Override
     public double getDownshiftAccelRpmThreshold(double rpm) {

@@ -3,6 +3,7 @@ package com.dojczmaszin.transmission.aggro;
 import com.dojczmaszin.gears.Gear;
 import com.dojczmaszin.gears.LoudGearDecorator;
 
+//second aggressive mode
 public class ObiecywalismySobieTenFilmOdLatAngry implements AggroMode {
     @Override
     public double getDownshiftAccelRpmThreshold(double rpm) {
