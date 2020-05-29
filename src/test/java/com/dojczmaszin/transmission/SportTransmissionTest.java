@@ -200,7 +200,7 @@ public class SportTransmissionTest {
         //then should downshift once
         assertEquals(new LoudGearDecorator(new DriveGear(4, externalSystems, 8)), resultGear);
         //and be kinda loud
-        assertEquals("I'm way louder than metallica, even before before they got old\n", outContent.toString());
+        assertEquals("I'm way louder than hetfield before he got old\n", outContent.toString());
 
     }
 

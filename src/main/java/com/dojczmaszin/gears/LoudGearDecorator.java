@@ -26,7 +26,7 @@ public class LoudGearDecorator extends GearDecorator {
 
     @Override
     public Gear shiftDown() {
-        System.out.println("I'm way louder than metallica, even before before they got old");
+        this.beLoud();
         return super.shiftDown();
     }
 
@@ -35,8 +35,12 @@ public class LoudGearDecorator extends GearDecorator {
         //clunky AF, need to inject behavior directly somehow
         Gear result = super.handleRpmIncrease(shiftDownRpmThreshold, shiftUpRpmThreshold);
         if (result.getNumber() < super.getNumber()) {
-            System.out.println("I'm way louder than metallica, even before before they got old");
+            this.beLoud();
         }
         return new LoudGearDecorator(result);
+    }
+
+    private void beLoud() {
+        System.out.println("I'm way louder than hetfield before he got old");
     }
 }
