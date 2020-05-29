@@ -1,11 +1,10 @@
 package com.dojczmaszin.transmission;
 
 import com.dojczmaszin.gears.Gear;
-import com.dojczmaszin.transmission.aggro.AggressiveTransmission;
 import com.dojczmaszin.transmission.aggro.AggroMode;
 import com.dojczmaszin.transmission.kickdown.Kickdown;
 
-public class Sport implements Transmission, AggressiveTransmission {
+public class Sport implements Transmission {
 
     private double shiftDownWhenAcceleratingRpmThreshold;
     private double shiftUpWhenAcceleratingRpmThreshold;
@@ -50,9 +49,8 @@ public class Sport implements Transmission, AggressiveTransmission {
 
 
     @Override
-    public void overrideDefaultTransmissionParams(AggroMode aggroMode) {
+    public void overrideTransmissionParams(AggroMode aggroMode) {
 
-        //or maybe return a new transmission instance?
         this.shiftDownWhenAcceleratingRpmThreshold = aggroMode
                 .getDownshiftAccelRpmThreshold(this.shiftDownWhenAcceleratingRpmThreshold);
         this.shiftUpWhenAcceleratingRpmThreshold = aggroMode

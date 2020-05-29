@@ -1,6 +1,7 @@
 package com.dojczmaszin.transmission;
 
 import com.dojczmaszin.gears.Gear;
+import com.dojczmaszin.transmission.aggro.AggroMode;
 
 public class Manual implements Transmission {
 
@@ -28,5 +29,10 @@ public class Manual implements Transmission {
     @Override
     public Gear handleManualDownshift() {
         return currentGear.shiftDown();
+    }
+
+    @Override
+    public void overrideTransmissionParams(AggroMode aggroMode) {
+        //do nothing
     }
 }

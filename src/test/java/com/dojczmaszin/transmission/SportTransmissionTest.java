@@ -127,7 +127,7 @@ public class SportTransmissionTest {
 
         //when above rpm
         AggroMode aggroMode = new PoUjMiLasIrritated();
-        sportTransmission.overrideDefaultTransmissionParams(aggroMode);
+        sportTransmission.overrideTransmissionParams(aggroMode);
         externalSystems.setCurrentRpm(1800d);
         Gear resultGear = sportTransmission.handleAcceleration(0.4d);
         //then should downshift once
@@ -143,7 +143,7 @@ public class SportTransmissionTest {
 
         //when above rpm
         AggroMode aggroMode = new PoUjMiLasIrritated();
-        sportTransmission.overrideDefaultTransmissionParams(aggroMode);
+        sportTransmission.overrideTransmissionParams(aggroMode);
         externalSystems.setCurrentRpm(1800d);
         Gear resultGear = sportTransmission.handleAcceleration(0.4d);
         //then should downshift once
@@ -159,7 +159,7 @@ public class SportTransmissionTest {
 
         //when above rpm
         AggroMode aggroMode = new PoUjMiLasIrritated();
-        sportTransmission.overrideDefaultTransmissionParams(aggroMode);
+        sportTransmission.overrideTransmissionParams(aggroMode);
         externalSystems.setCurrentRpm(3000d);
         Gear resultGear = sportTransmission.handleAcceleration(0.4d);
         //then should downshift once
@@ -175,7 +175,7 @@ public class SportTransmissionTest {
 
         //when above rpm
         AggroMode aggroMode = new PoUjMiLasIrritated();
-        sportTransmission.overrideDefaultTransmissionParams(aggroMode);
+        sportTransmission.overrideTransmissionParams(aggroMode);
         externalSystems.setCurrentRpm(3999d);
         Gear resultGear = sportTransmission.handleDeacceleration();
         //then should downshift once
@@ -194,7 +194,7 @@ public class SportTransmissionTest {
 
         //when above rpm
         AggroMode aggroMode = new ObiecywalismySobieTenFilmOdLatAngry();
-        sportTransmission.overrideDefaultTransmissionParams(aggroMode);
+        sportTransmission.overrideTransmissionParams(aggroMode);
         externalSystems.setCurrentRpm(1800d);
         Gear resultGear = sportTransmission.handleAcceleration(0.4d);
         //then should downshift once

@@ -3,6 +3,7 @@ package com.dojczmaszin;
 import com.dojczmaszin.gears.Gear;
 import com.dojczmaszin.thirdparty.WrappedGearbox;
 import com.dojczmaszin.transmission.Transmission;
+import com.dojczmaszin.transmission.aggro.AggroMode;
 
 public class GearboxDriver {
 
@@ -19,7 +20,7 @@ public class GearboxDriver {
         wrappedGearbox.setCurrentGear(gear);
     }
 
-    public void handleRpmDecrease() {
+    public void handleDeacceleration() {
         Gear gear = transmission.handleDeacceleration();
         wrappedGearbox.setCurrentGear(gear);
     }
@@ -32,6 +33,14 @@ public class GearboxDriver {
     public void handleManualDownshift() {
         Gear gear = transmission.handleManualDownshift();
         wrappedGearbox.setCurrentGear(gear);
+    }
+
+    public void switchTransmissionMode(Transmission mode) {
+        this.transmission = transmission;
+    }
+
+    public void switchAggressiveMode(AggroMode mode) {
+        this.transmission.overrideTransmissionParams(mode);
     }
 
 }
